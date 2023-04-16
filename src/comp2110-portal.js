@@ -5,6 +5,8 @@ import './components/widget-column.js';
 import './components/ad-widget.js';
 import './components/login-widget.js';
 
+import './components/holiday-widget.js';
+
 class Comp2110Portal extends LitElement {
   static properties = {
     header: { type: String },
@@ -46,12 +48,12 @@ class Comp2110Portal extends LitElement {
         <h1>${this.header}</h1>
         <login-widget></login-widget>
       </header>
-
+    
       <main>
         <widget-column header="Left">
           <widget-block header="First Widget"></widget-block>
           <widget-block header="Second Widget"></widget-block>
-          <widget-block header="Third Widget"></widget-block>
+          <widget-block header="Third Widget"><holiday-widget/></widget-block>
         </widget-column>
         <blog-block></blog-block>       
         <widget-column header="Right">

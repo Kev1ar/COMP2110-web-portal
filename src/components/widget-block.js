@@ -22,6 +22,7 @@ class WidgetBlock extends LitElement {
   render() {
     return html`
         <h3>${this.header}</h3>
+        <slot></slot>
     `;
   }
 }

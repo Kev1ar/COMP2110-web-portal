@@ -27,6 +27,17 @@ todo
 
 # weather-widget - Member: Earl Stephen Santos
 
+## 2023-04-20
+
 - Added base widget
 - Styled widget layout
 - Basic functionality for getting location in place but not connected to widget's display
+
+## 2023-04-20 8.30pm
+
+- Removed clock (not really relevant)
+- Redid layout
+- Connected Functionality to Widget
+- Added some error handling
+
+---

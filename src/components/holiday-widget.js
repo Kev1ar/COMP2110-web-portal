@@ -90,7 +90,6 @@ class HolidayWidget extends LitElement {
   }
 
   _updateHolidays(e) {
-    this._data = undefined;
     console.log(e.target.value);
     this.country = e.target.value;
     this._fetchHolidays();

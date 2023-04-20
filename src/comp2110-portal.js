@@ -1,20 +1,25 @@
-import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
-import './components/widget-block.js';
-import './components/blog-block.js';
-import './components/widget-column.js';
-import './components/ad-widget.js';
-import './components/login-widget.js';
+import {
+  LitElement,
+  html,
+  css,
+} from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js";
+import "./components/widget-block.js";
+import "./components/blog-block.js";
+import "./components/widget-column.js";
+import "./components/ad-widget.js";
+import "./components/login-widget.js";
 
-import './components/holiday-widget.js';
+import "./components/holiday-widget.js";
+import "./components/weather-widget.js";
 
 class Comp2110Portal extends LitElement {
   static properties = {
     header: { type: String },
-  }
+  };
 
   static styles = css`
     :host {
-      min-height: 100vh;   
+      min-height: 100vh;
       font-size: 14pt;
       color: #1a2b42;
       max-width: 960px;
@@ -39,7 +44,7 @@ class Comp2110Portal extends LitElement {
 
   constructor() {
     super();
-    this.header = 'COMP2110 Portal';
+    this.header = "COMP2110 Portal";
   }
 
   render() {
@@ -48,14 +53,15 @@ class Comp2110Portal extends LitElement {
         <h1>${this.header}</h1>
         <login-widget></login-widget>
       </header>
-    
+
       <main>
         <widget-column header="Left">
-          <widget-block header="First Widget"></widget-block>
+          <weather-widget></weather-widget>
+
           <widget-block header="Second Widget"></widget-block>
-          <widget-block header="Third Widget"><holiday-widget/></widget-block>
+          <widget-block header="Third Widget"><holiday-widget /></widget-block>
         </widget-column>
-        <blog-block></blog-block>       
+        <blog-block></blog-block>
         <widget-column header="Right">
           <ad-widget></ad-widget>
           <widget-block header="Fourth Widget"></widget-block>
@@ -70,4 +76,4 @@ class Comp2110Portal extends LitElement {
   }
 }
 
-customElements.define('comp2110-portal', Comp2110Portal);
+customElements.define("comp2110-portal", Comp2110Portal);

@@ -22,3 +22,11 @@ todo
 - Country selection from list provided by external API. Default Country: AU Australia
 - Displays next five public holidays for the selected region and their dates
 - API used: https://date.nager.at/
+
+---
+
+# weather-widget - Member: Earl Stephen Santos
+
+- Added base widget
+- Styled widget layout
+- Basic functionality for getting location in place but not connected to widget's display

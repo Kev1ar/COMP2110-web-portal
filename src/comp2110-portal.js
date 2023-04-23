@@ -59,7 +59,7 @@ class Comp2110Portal extends LitElement {
           <weather-widget></weather-widget>
 
           <widget-block header="Second Widget"></widget-block>
-          <widget-block header="Third Widget"><holiday-widget /></widget-block>
+          <holiday-widget/>
         </widget-column>
         <blog-block></blog-block>
         <widget-column header="Right">

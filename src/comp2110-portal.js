@@ -9,6 +9,8 @@ import "./components/widget-column.js";
 import "./components/ad-widget.js";
 import "./components/login-widget.js";
 
+import "./components/blog-form.js";
+
 import "./components/holiday-widget.js";
 import "./components/weather-widget.js";
 
@@ -59,8 +61,9 @@ class Comp2110Portal extends LitElement {
           <weather-widget></weather-widget>
 
           <widget-block header="Second Widget"></widget-block>
-          <holiday-widget/>
+          <holiday-widget />
         </widget-column>
+        <blog-form></blog-form>
         <blog-block></blog-block>
         <widget-column header="Right">
           <ad-widget></ad-widget>

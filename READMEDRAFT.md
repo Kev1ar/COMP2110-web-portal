@@ -44,4 +44,10 @@ todo
 - Connected Functionality to Widget
 - Added some error handling
 
+## 2023-04-26
+
+- updated auth.js to fix custom events bug
+- added link to documentation for weather api in the WeatherWidget
+- added basic blog form (WIP)
+
 ---

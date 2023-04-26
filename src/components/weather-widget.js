@@ -21,6 +21,7 @@ import {
 class WeatherWidget extends LitElement {
   //API URLs
   //---------------------------------------------------------------------------------------------------------------------------------------------
+  //Documentation can be found here https://open-meteo.com/en/docs
   static FORECAST_URL =
     "https://api.open-meteo.com/v1/forecast?hourly=temperature_2m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true";
   //---------------------------------------------------------------------------------------------------------------------------------------------

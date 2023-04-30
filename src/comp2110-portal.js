@@ -13,6 +13,7 @@ import "./components/blog-form.js";
 
 import "./components/holiday-widget.js";
 import "./components/weather-widget.js";
+import "./components/exchange-widget.js";
 
 class Comp2110Portal extends LitElement {
   static properties = {
@@ -66,8 +67,8 @@ class Comp2110Portal extends LitElement {
         <blog-form></blog-form>
         <blog-block></blog-block>
         <widget-column header="Right">
-          <ad-widget></ad-widget>
-          <widget-block header="Fourth Widget"></widget-block>
+          <ad-widget></ad-widget>          
+          <exchange-widget></exchange-widget>
           <widget-block header="Fifth Widget"></widget-block>
         </widget-column>
       </main>

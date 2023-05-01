@@ -50,4 +50,9 @@ todo
 - added link to documentation for weather api in the WeatherWidget
 - added basic blog form (WIP)
 
+## 2023-05-01
+
+- blog form now closes after submit
+- tweak to fix blog error when content field is empty (WIP)
+
 ---

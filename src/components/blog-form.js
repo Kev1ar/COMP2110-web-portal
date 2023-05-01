@@ -166,6 +166,9 @@ class BlogForm extends LitElement {
 
       body: JSON.stringify(postBody),
     });
+    //close the blog form after
+    this._formVisible = !this._formVisible;
+    //page still needs to refresh to see new blog
   }
 
   _openBlogForm() {

@@ -29,10 +29,80 @@ class Comp2110Portal extends LitElement {
       margin: 0 auto;
       text-align: center;
       background-color: lightgoldenrodyellow;
+
+      margin: 0px;
+      padding: 0px;
+    }
+
+    header {
+      background-color: red;
+      position: fixed;
+
+      display: flex;
+      flex-direction: row;
+
+      width: 100%;
+      height: 100px;
+
+      justify-content: space-around;
+      align-items: center;
+
+      box-shadow: 0px 5px 5px;
+    }
+
+    header h1 {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .login {
+      margin: 0px;
+      padding: 0px;
+      margin-top: 15px;
     }
 
     main {
       display: flex;
+      flex-direction: column;
+
+      padding-top: 150px;
+    }
+
+    .widget-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+
+      margin: 0px;
+      padding: 0px;
+      margin-left: 15px;
+      margin-right: 15px;
+
+      justify-content: space-evenly;
+      align-self: center;
+    }
+
+    .widget {
+      flex-grow: 1;
+      justify-content: center;
+    }
+
+    .weather {
+      display: flex;
+    }
+
+    .blog-container {
+      margin: 0px;
+      padding: 0px;
+      margin-top: 50px;
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+
+    .blogs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
     }
 
     .app-footer {
@@ -54,23 +124,21 @@ class Comp2110Portal extends LitElement {
     return html`
       <header>
         <h1>${this.header}</h1>
-        <login-widget></login-widget>
+        <login-widget class="login"></login-widget>
+        <blog-form></blog-form>
       </header>
 
       <main>
-        <widget-column header="Left">
-          <weather-widget></weather-widget>
+        <div class="widget-container">
+          <weather-widget class="widget weather"></weather-widget>
+          <widget-block class="widget" header="Second Widget"></widget-block>
+          <holiday-widget class="widget"></holiday-widget>
+          <exchange-widget class="widget"></exchange-widget>
+        </div>
 
-          <widget-block header="Second Widget"></widget-block>
-          <holiday-widget />
-        </widget-column>
-        <blog-form></blog-form>
-        <blog-block></blog-block>
-        <widget-column header="Right">
-          <ad-widget></ad-widget>          
-          <exchange-widget></exchange-widget>
-          <widget-block header="Fifth Widget"></widget-block>
-        </widget-column>
+        <div class="blog-container">
+          <blog-block class="blogs"></blog-block>
+        </div>
       </main>
 
       <p class="app-footer">

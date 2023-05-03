@@ -6,16 +6,9 @@ import {
 
 //TODO
 /**
- * Check if Location enabled
- * if yes then display location
- * otherwise have inputfield for selecting location?
- *
- * figure out how to request for location permission
- *
- * figure out what the api can give you first
- * then figure out the layout
- *
- *
+ * * _forecastNow has isDay field
+ * maybe change the background depending on that
+ * default to day still
  */
 
 class WeatherWidget extends LitElement {
@@ -120,21 +113,6 @@ class WeatherWidget extends LitElement {
       border: 1px solid black;
     }
 
-    .row {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .row-label {
-      margin-left: 10px;
-      font-variant: small-caps;
-    }
-
-    .row-data {
-      margin-right: 10px;
-    }
-
     .location-error {
       display: flex;
       flex-wrap: wrap;
@@ -145,6 +123,8 @@ class WeatherWidget extends LitElement {
       padding: 0px;
       padding-left: 15px;
       padding-right: 15px;
+
+      justify-content: center;
     }
     .location-error h1 {
       align-self: center;
@@ -165,6 +145,8 @@ class WeatherWidget extends LitElement {
 
       height: 300px;
       width: 300px;
+
+      flex-grow: 1;
     }
 
     .weather-icon-container {
@@ -331,6 +313,7 @@ class WeatherWidget extends LitElement {
           this._forecastData = data;
 
           this._forecastNow = data.current_weather;
+          console.log(data);
         })
         .catch((error) => {
           console.log(error);
@@ -357,31 +340,6 @@ class WeatherWidget extends LitElement {
   }
   //---------------------------------------------------------------------------------------------------------------------------------------------
 
-  //Testing stuff
-  //---------------------------------------------------------------------------------------------------------------------------------------------
-  _basicTesting() {
-    return html`
-    <div>
-      <h4>Weather</h4>
-      <button @click="${this._getLocation}"">Try It</button>
-      <div class="row">
-        <h5 class="row-label">Location</h5>
-        <h5 class="row-data">
-          ${this._coords ? this._coords.latitude : ""},
-          ${this._coords ? this._coords.longitude : ""}
-        </h5>
-      </div>
-      <div class="row">
-        <h5 class="row-label">Forecast Now</h5>
-        <h5 class="row-data">
-          ${this._forecastNow ? this._forecastNow : ""}
-        </h5>
-      </div>
-    </div>
-  `;
-  }
-  //---------------------------------------------------------------------------------------------------------------------------------------------
-
   //Main Widget Components
   //---------------------------------------------------------------------------------------------------------------------------------------------
   _widget() {
@@ -402,14 +360,14 @@ class WeatherWidget extends LitElement {
         </h2>
         <h1>
           ${this._forecastNow
-            ? this._forecastNow.temperature.toString().substring(0, 2)
+            ? Math.round(this._forecastNow.temperature)
             : ""}&#176;
         </h1>
         <h4>
           ${this._forecastData
-            ? this._getForecastForDate(0).min.toString().substring(0, 2) +
+            ? Math.round(this._getForecastForDate(0).min) +
               "~" +
-              this._getForecastForDate(0).max.toString().substring(0, 2)
+              Math.round(this._getForecastForDate(0).max)
             : ""}&#176;
         </h4>
         <h3>
@@ -419,90 +377,29 @@ class WeatherWidget extends LitElement {
         </h3>
       </div>
       <div class="future-weather-container">
-        <div class="future-weather-day">
-          <h4>
-            ${this._forecastData
-              ? this._getDayName(this._getForecastForDate(1).date)
-              : "DAY"}
-          </h4>
-          <img
-            src=${this._forecastData
-              ? WeatherWidget.WEATHER_ICONS_URLS[
-                  this._getForecastForDate(1).weathercode
-                ]
-              : WeatherWidget.IMAGE_SUNNY_URL}
-          />
-          <h4>
-            ${this._forecastData
-              ? this._getForecastForDate(1).min.toString().substring(0, 2) +
-                "/" +
-                this._getForecastForDate(1).max.toString().substring(0, 2)
-              : ""}&#176;
-          </h4>
-        </div>
-        <div class="future-weather-day">
-          <h4>
-            ${this._forecastData
-              ? this._getDayName(this._getForecastForDate(2).date)
-              : "DAY"}
-          </h4>
-          <img
-            src=${this._forecastData
-              ? WeatherWidget.WEATHER_ICONS_URLS[
-                  this._getForecastForDate(2).weathercode
-                ]
-              : WeatherWidget.IMAGE_SUNNY_URL}
-          />
-          <h4>
-            ${this._forecastData
-              ? this._getForecastForDate(2).min.toString().substring(0, 2) +
-                "/" +
-                this._getForecastForDate(2).max.toString().substring(0, 2)
-              : ""}&#176;
-          </h4>
-        </div>
-        <div class="future-weather-day">
-          <h4>
-            ${this._forecastData
-              ? this._getDayName(this._getForecastForDate(3).date)
-              : "DAY"}
-          </h4>
-          <img
-            src=${this._forecastData
-              ? WeatherWidget.WEATHER_ICONS_URLS[
-                  this._getForecastForDate(3).weathercode
-                ]
-              : WeatherWidget.IMAGE_SUNNY_URL}
-          />
-          <h4>
-            ${this._forecastData
-              ? this._getForecastForDate(3).min.toString().substring(0, 2) +
-                "/" +
-                this._getForecastForDate(3).max.toString().substring(0, 2)
-              : ""}&#176;
-          </h4>
-        </div>
-        <div class="future-weather-day">
-          <h4>
-            ${this._forecastData
-              ? this._getDayName(this._getForecastForDate(4).date)
-              : "DAY"}
-          </h4>
-          <img
-            src=${this._forecastData
-              ? WeatherWidget.WEATHER_ICONS_URLS[
-                  this._getForecastForDate(4).weathercode
-                ]
-              : WeatherWidget.IMAGE_SUNNY_URL}
-          />
-          <h4>
-            ${this._forecastData
-              ? this._getForecastForDate(4).min.toString().substring(0, 2) +
-                "/" +
-                this._getForecastForDate(4).max.toString().substring(0, 2)
-              : ""}&#176;
-          </h4>
-        </div>
+        ${this._forecastData.daily.time.map((date, index) => {
+          //skip the first day
+          //only show 4 days ahead
+          if (index > 0 && index < 5) {
+            return html`<div class="future-weather-day">
+              <h4>${this._forecastData ? this._getDayName(date) : "DAY"}</h4>
+              <img
+                src=${this._forecastData
+                  ? WeatherWidget.WEATHER_ICONS_URLS[
+                      this._getForecastForDate(index).weathercode
+                    ]
+                  : WeatherWidget.IMAGE_SUNNY_URL}
+              />
+              <h4>
+                ${this._forecastData
+                  ? Math.round(this._getForecastForDate(index).min) +
+                    "/" +
+                    Math.round(this._getForecastForDate(index).max)
+                  : ""}&#176;
+              </h4>
+            </div>`;
+          }
+        })}
       </div>
     </div>`;
   }
@@ -520,6 +417,11 @@ class WeatherWidget extends LitElement {
     if (this._errorOccured) {
       return html`<div class="location-error">
         <h1>Something has gone wrong. Please try again.</h1>
+      </div>`;
+    }
+    if (!this._forecastData) {
+      return html`<div class="location-error">
+        <h1>Loading...</h1>
       </div>`;
     }
     return html`${this._widget()}`;

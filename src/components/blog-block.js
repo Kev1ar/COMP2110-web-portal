@@ -19,14 +19,24 @@ class BlockBlock extends LitElement {
 
   static styles = css`
     :host {
-      margin: 1em;
     }
     .blogpost {
       text-align: left;
+      border-radius: 15px;
+      border: 1px solid black;
+
+      flex-basis: 40%;
+      flex-grow: 1;
+      min-width: 500px;
+      min-height: 200px;
     }
     .blogpost h2 {
       background-color: pink;
       text-transform: capitalize;
+    }
+    .empty-content {
+      font-style: italic;
+      color: lightgray;
     }
   `;
 
@@ -48,7 +58,7 @@ class BlockBlock extends LitElement {
   // formatting library
   static formatBody(text) {
     if (!text) {
-      return html`<p>NO CONTENT</p>`;
+      return html`<p class="empty-content">No Content</p>`;
     }
     const paragraphs = text.split("\r\n");
     return paragraphs.map((paragraph) => html`<p>${paragraph}</p>`);
@@ -59,11 +69,6 @@ class BlockBlock extends LitElement {
 
     return html`
       ${this._posts.map((post) => {
-        //if its blank
-        // if (!post.title || !post.name) {
-        //   return null;
-        // }
-
         return html`<div class="blogpost">
           <h2>${post.title}</h2>
           <h3>By ${post.name}</h3>

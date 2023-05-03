@@ -19,13 +19,8 @@ class BlogForm extends LitElement {
     }
 
     .open-blog-form-button {
-      position: fixed;
-
       width: 100px;
-      height: 100px;
-
-      bottom: 50px;
-      right: 50px;
+      height: 50px;
     }
     .open-blog-form-button button {
       width: 100%;
@@ -45,6 +40,8 @@ class BlogForm extends LitElement {
       width: 80%;
       height: 70%;
 
+      top: 10%;
+      bottom: 0;
       left: 0;
       right: 0;
       margin-left: auto;
@@ -202,7 +199,8 @@ class BlogForm extends LitElement {
   }
 
   render() {
-    return html`${this._formVisible ? this._openBlogForm() : this._blogForm()}`;
+    return html`${this._openBlogForm()}
+    ${this._formVisible ? null : this._blogForm()}`;
   }
 }
 

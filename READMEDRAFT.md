@@ -55,4 +55,25 @@ todo
 - blog form now closes after submit
 - tweak to fix blog error when content field is empty (WIP)
 
+## 2023-05-02
+
+- added loading screen for widget
+
+## 2023-05-03
+
+- added basic layout for main portal page (group WIP)
+- widgets layout is now responsive
+- blog layout is no responsive
+- blog form button no longer disappears when form is open
+- blog form button added to header
+- blog posts currently displays No Content when no content is found
+- blog posts now have a minimum width
+- basic layout for the login form (group WIP)
+- TODOs
+  - overall colours and theme
+  - blog post styling
+  - still missing one widget
+  - Task Widget (Optional)
+  - header responsiveness
+
 ---

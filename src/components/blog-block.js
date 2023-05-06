@@ -20,10 +20,12 @@ class BlockBlock extends LitElement {
   static styles = css`
     :host {
     }
+    
     .blogpost {
       text-align: left;
       border-radius: 15px;
       border: 1px solid black;
+      background-color: rgb(51, 51, 51); /*light grey*/
 
       flex-basis: 40%;
       flex-grow: 1;
@@ -31,12 +33,23 @@ class BlockBlock extends LitElement {
       min-height: 200px;
     }
     .blogpost h2 {
-      background-color: pink;
+      background-color: rgb(0, 80, 60); /* Green / test-colour */
+      margin: 0;
+     
+      text-align: left 1.5%;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      padding: 10px;
       text-transform: capitalize;
     }
     .empty-content {
       font-style: italic;
       color: lightgray;
+    }
+
+    .blogpost p, h3{
+      text-align: left;
+      margin-left: 1.5%;
     }
   `;
 

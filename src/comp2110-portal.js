@@ -29,24 +29,20 @@ class Comp2110Portal extends LitElement {
       margin: 0 auto;
       text-align: center;
       background-color: lightgoldenrodyellow;
-
       margin: 0px;
       padding: 0px;
+      color: rgb(192, 192, 192);
     }
 
     header {
-      background-color: red;
+      background-color: rgb(30, 30, 30); /*dark grey*/
       position: fixed;
-
       display: flex;
       flex-direction: row;
-
       width: 100%;
       height: 100px;
-
       justify-content: space-around;
       align-items: center;
-
       box-shadow: 0px 5px 5px;
     }
 
@@ -64,8 +60,8 @@ class Comp2110Portal extends LitElement {
     main {
       display: flex;
       flex-direction: column;
-
       padding-top: 150px;
+      background-color: rgb(37, 37, 38); /*mid grey*/
     }
 
     .widget-container {

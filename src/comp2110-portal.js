@@ -137,6 +137,15 @@ class Comp2110Portal extends LitElement {
       gap: 25px;
     }
 
+    .load-blog-btn {
+      margin: 0px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 10px 30px;
+
+      font-size: 20px;
+    }
+
     .app-footer {
       font-size: calc(12px + 0.5vmin);
       align-items: center;
@@ -194,7 +203,7 @@ class Comp2110Portal extends LitElement {
 
         <div class="blog-container">
           <blog-block class="blogs" id="blogs"></blog-block>
-          <button class="form-close-button" @click="${this._loadMoreBlogs}">
+          <button class="load-blog-btn" @click="${this._loadMoreBlogs}">
             Load More...
           </button>
         </div>

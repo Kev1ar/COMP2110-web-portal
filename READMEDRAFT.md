@@ -94,4 +94,18 @@ todo
   - header needs redoing
   - login form needs redoing
 
+## 2023-05-08 PT2
+
+- padded up the load more blogs button
+- styling added for the blog submit form
+- basic styling added for the submit blog button
+- alert messages for when trying to submit a blank blog
+- alert messages for when trying to submit a blog when user is not logged in
+- added placeholder for blogs with no title
+- TODOs
+  - blog form open button styling (WIP)
+  - header needs redoing
+  - login form needs redoing
+  - footer needs work (completely forgot)
+
 ---

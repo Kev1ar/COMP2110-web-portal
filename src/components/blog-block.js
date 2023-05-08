@@ -62,10 +62,20 @@ class BlockBlock extends LitElement {
       color: lightgray;
     }
 
-    .blogpost p,
-    h3 {
+    .blogpost h3 {
       text-align: justify;
-      padding: 0px 10px;
+
+      margin: 0px;
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 0px;
+      margin-top: 5px;
+    }
+    .blogpost p {
+      text-align: justify;
+
+      margin: 0px;
+      padding: 10px;
     }
   `;
 
@@ -133,8 +143,12 @@ class BlockBlock extends LitElement {
             ? "blogpost-dark"
             : "blogpost-light"}"
         >
-          <h2 class=" ${this.isDarkMode ? "h2-dark" : "h2-light"}">
-            ${post.title}
+          <h2
+            class=" ${this.isDarkMode ? "h2-dark" : "h2-light"} ${post.title
+              ? ""
+              : "empty-content"}"
+          >
+            ${post.title ? post.title : "No Title"}
           </h2>
           <h3>By ${post.name}</h3>
           ${BlockBlock.formatBody(post.content)}

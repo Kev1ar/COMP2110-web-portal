@@ -6,9 +6,7 @@ import {
 
 //TODO
 /**
- * * _forecastNow has isDay field
- * maybe change the background depending on that
- * default to day still
+ *
  */
 
 class WeatherWidget extends LitElement {
@@ -103,11 +101,9 @@ class WeatherWidget extends LitElement {
     :host {
       display: block;
       background-color: #6ec7ff;
-      background-image: url("https://img.freepik.com/free-photo/white-cloud-blue-sky_74190-7709.jpg");
-      background-position: center;
-
-      width: 300px;
-      height: 300px;
+      
+      width: 330px;
+      height: 330px;
 
       border-radius: 15px;
       border: 1px solid black;
@@ -117,7 +113,8 @@ class WeatherWidget extends LitElement {
       display: flex;
       flex-wrap: wrap;
 
-      height: 300px;
+      width: 330px;
+      height: 330px;
 
       margin: 0px;
       padding: 0px;
@@ -143,10 +140,24 @@ class WeatherWidget extends LitElement {
         "d d d d d d d d" 0.2fr
         "d d d d d d d d" 0.2fr;
 
-      height: 300px;
-      width: 300px;
+      height: 330px;
+      width: 330px;
 
       flex-grow: 1;
+
+      border-radius: 15px;
+    }
+
+    .day {
+      background-image: url("https://img.freepik.com/free-photo/white-cloud-blue-sky_74190-7709.jpg");
+      background-position: center;
+    }
+
+    .night {
+      background-image: url("https://static.vecteezy.com/system/resources/previews/007/710/509/large_2x/starry-night-sky-with-stars-and-moon-in-cloudscape-background-free-photo.jpg");
+      background-position: center;
+
+      color: white;
     }
 
     .weather-icon-container {
@@ -313,7 +324,6 @@ class WeatherWidget extends LitElement {
           this._forecastData = data;
 
           this._forecastNow = data.current_weather;
-          console.log(data);
         })
         .catch((error) => {
           console.log(error);
@@ -343,7 +353,9 @@ class WeatherWidget extends LitElement {
   //Main Widget Components
   //---------------------------------------------------------------------------------------------------------------------------------------------
   _widget() {
-    return html`<div class="main-container">
+    return html`<div
+      class="main-container ${this._forecastNow.is_day == 1 ? "day" : "night"}"
+    >
       <div class="weather-icon-container">
         <img
           style="height: 100px; width: auto"

@@ -12,6 +12,7 @@ class BlogForm extends LitElement {
     _content: { type: String },
     _user: { type: String, state: true },
     _formVisible: { type: Boolean },
+    isDarkMode: { type: Boolean },
   };
 
   static styles = css`
@@ -19,6 +20,10 @@ class BlogForm extends LitElement {
     }
 
     .open-blog-form-button {
+      position: fixed;
+      bottom: 50px;
+      right: 50px;
+
       width: 100px;
       height: 50px;
     }
@@ -29,7 +34,7 @@ class BlogForm extends LitElement {
 
     .main-container {
       //   background-color: red;
-      background-color: white;
+
       display: grid;
       grid-template:
         "a a a b" 0.2fr
@@ -52,6 +57,16 @@ class BlogForm extends LitElement {
       border: 1px solid black;
     }
 
+    .main-light {
+      background-color: white;
+      color: black;
+    }
+
+    .main-dark {
+      background-color: rgb(37, 37, 38); /*mid grey*/
+      color: white;
+    }
+
     h1 {
       //   background-color: white;
       grid-area: a;
@@ -60,6 +75,8 @@ class BlogForm extends LitElement {
 
       margin: 0;
       padding: 0;
+
+      font-size: 50px;
     }
     .form-close-button {
       //   background-color: orange;
@@ -133,6 +150,11 @@ class BlogForm extends LitElement {
     super();
     this._formVisible = true;
     this._user = getUser();
+    this.isDarkMode = false;
+  }
+
+  _toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
   }
 
   _submitBlog(event) {
@@ -165,14 +187,21 @@ class BlogForm extends LitElement {
     });
     //close the blog form after
     this._formVisible = !this._formVisible;
-    //page still needs to refresh to see new blog
+
+    var el = document
+      .getElementsByTagName("comp2110-portal")[0]
+      .shadowRoot.getElementById("blogs");
+    el._addNewBlog(postBody, this._user.name);
   }
 
   _openBlogForm() {
     this._user = getUser();
 
-    return html`<div class="open-blog-form-button"><button @click="${() =>
-      (this._formVisible = !this._formVisible)}"">Submit Blog</button></div>`;
+    return html`<div class="open-blog-form-button">
+      <button @click="${() => (this._formVisible = !this._formVisible)}">
+        Submit Blog
+      </button>
+    </div>`;
   }
   _blogForm() {
     this._user = getUser();
@@ -184,8 +213,10 @@ class BlogForm extends LitElement {
           (this._formVisible = !this._formVisible)}"">Close</button>
       </div>`;
     }
-    return html`<div class="main-container">
-      <h1>Submit a New Vlog</h1>
+    return html`<div class="main-container ${
+      this.isDarkMode ? "main-dark" : "main-light"
+    }">
+      <h1>Submit a New Blog</h1>
       <button class="form-close-button" @click="${() =>
         (this._formVisible = !this._formVisible)}"">Close</button>
       <form class="main-form" @submit=${this._submitBlog}>

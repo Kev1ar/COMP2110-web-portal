@@ -69,11 +69,29 @@ todo
 - blog posts currently displays No Content when no content is found
 - blog posts now have a minimum width
 - basic layout for the login form (group WIP)
+- weather widget refactored
+- weather widget removed unneccesary code
 - TODOs
   - overall colours and theme
   - blog post styling
   - still missing one widget
   - Task Widget (Optional)
   - header responsiveness
+
+## 2023-05-04
+
+- resized weather widget to match holiday widget size
+- weather widget styling changes between day or night
+
+## 2023-05-08
+
+- added load more button to blogs section
+- creating a new blog now displays in list correctly without need for refresh
+- added a button to toggle between light mode and dark mode
+- TODOs
+  - blog form styling
+  - blog form open button needs styling
+  - header needs redoing
+  - login form needs redoing
 
 ---

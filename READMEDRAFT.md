@@ -108,4 +108,10 @@ todo
   - login form needs redoing
   - footer needs work (completely forgot)
 
+## 2023-05-09
+
+- weather widget text color
+- added posted date to blog posts
+- added placeholder random fact widget
+
 ---

@@ -4,11 +4,6 @@ import {
   css,
 } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js";
 
-//TODO
-/**
- *
- */
-
 class WeatherWidget extends LitElement {
   //API URLs
   //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -18,6 +13,7 @@ class WeatherWidget extends LitElement {
   //---------------------------------------------------------------------------------------------------------------------------------------------
 
   //Weather Icon URLS
+  //labels and icons are assigned depending on the weather code that is returned from the api
   //---------------------------------------------------------------------------------------------------------------------------------------------
   static IMAGE_SUNNY_URL =
     "https://cdn-icons-png.flaticon.com/512/2698/2698194.png";
@@ -97,6 +93,7 @@ class WeatherWidget extends LitElement {
     _forecastNow: { type: String },
   };
 
+  //background image changes between day and night - dependent on API
   static styles = css`
     :host {
       display: block;
@@ -107,6 +104,8 @@ class WeatherWidget extends LitElement {
 
       border-radius: 15px;
       border: 1px solid black;
+
+      color: black;
     }
 
     .location-error {
@@ -321,8 +320,9 @@ class WeatherWidget extends LitElement {
           return res.json();
         })
         .then((data) => {
+          //full forecast data
           this._forecastData = data;
-
+          //current forecast data
           this._forecastNow = data.current_weather;
         })
         .catch((error) => {
@@ -418,6 +418,7 @@ class WeatherWidget extends LitElement {
   //---------------------------------------------------------------------------------------------------------------------------------------------
 
   render() {
+    //no location access
     if (!this._locationEnabled) {
       return html`<div class="location-error">
         <h1>
@@ -426,11 +427,13 @@ class WeatherWidget extends LitElement {
         </h1>
       </div>`;
     }
+    //error during fetch reqs
     if (this._errorOccured) {
       return html`<div class="location-error">
         <h1>Something has gone wrong. Please try again.</h1>
       </div>`;
     }
+    //still waiting on data
     if (!this._forecastData) {
       return html`<div class="location-error">
         <h1>Loading...</h1>

@@ -62,7 +62,8 @@ class BlockBlock extends LitElement {
       color: lightgray;
     }
 
-    .blogpost h3 {
+    .blogpost h3,
+    h5 {
       text-align: justify;
 
       margin: 0px;
@@ -151,6 +152,7 @@ class BlockBlock extends LitElement {
             ${post.title ? post.title : "No Title"}
           </h2>
           <h3>By ${post.name}</h3>
+          <h5>Posted on ${new Date(post.timestamp).toLocaleString()}</h5>
           ${BlockBlock.formatBody(post.content)}
         </div>`;
       })}

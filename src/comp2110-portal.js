@@ -196,9 +196,9 @@ class Comp2110Portal extends LitElement {
       <main class="${this.isDarkMode ? "main-dark" : "main-light"}">
         <div class="widget-container">
           <weather-widget class="widget weather"></weather-widget>
-          <widget-block class="widget" header="Second Widget"></widget-block>
-          <holiday-widget class="widget"></holiday-widget>
           <exchange-widget class="widget"></exchange-widget>
+          <holiday-widget class="widget"></holiday-widget>
+          <widget-block class="widget" header="Forth Widget"></widget-block>
         </div>
 
         <div class="blog-container">

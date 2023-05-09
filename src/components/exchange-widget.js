@@ -23,7 +23,7 @@ class CurrencyExchange extends LitElement {
     background-position:center;
     background-position-y:78%;
     background-size:70%;
-    colour: white;
+    color: white;
     background-color: rgb(51, 51, 51);
   }
 
@@ -42,10 +42,10 @@ class CurrencyExchange extends LitElement {
   
 
   select, input[type="number"]{
-    margin-top:3%;
+    margin-top: 15px;
     padding: 5px;
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     background-color: rgb(40, 40, 40);
     color: white;
     border-radius: 15px;
@@ -62,6 +62,7 @@ class CurrencyExchange extends LitElement {
     border-radius: 15px;
     color: white;
     border: rgb(0, 80, 60);
+    margin-right: 25%;
   }
 
   button:hover{
@@ -88,6 +89,7 @@ class CurrencyExchange extends LitElement {
   
   label[for="to-output"], button{
     display:inline-flex;
+    margin-top:120px;
   }
 
   
@@ -118,8 +120,8 @@ class CurrencyExchange extends LitElement {
     constructor() {
       super();
       this.header = 'Currency Exchange';
-      this.amount = 0.01;
-      this.result = 0.01;
+      this.amount = 0.00;
+      this.result = 0.00;
       this.fromCurrency = 'AED';
       this.toCurrency = 'AED';
       this.currencies = [];

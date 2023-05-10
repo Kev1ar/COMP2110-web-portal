@@ -4,13 +4,6 @@ import {
   css,
 } from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js";
 
-//TODO
-/**
- * * _forecastNow has isDay field
- * maybe change the background depending on that
- * default to day still
- */
-
 class WeatherWidget extends LitElement {
   //API URLs
   //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,6 +13,7 @@ class WeatherWidget extends LitElement {
   //---------------------------------------------------------------------------------------------------------------------------------------------
 
   //Weather Icon URLS
+  //labels and icons are assigned depending on the weather code that is returned from the api
   //---------------------------------------------------------------------------------------------------------------------------------------------
   static IMAGE_SUNNY_URL =
     "https://cdn-icons-png.flaticon.com/512/2698/2698194.png";
@@ -99,25 +93,27 @@ class WeatherWidget extends LitElement {
     _forecastNow: { type: String },
   };
 
+  //background image changes between day and night - dependent on API
   static styles = css`
     :host {
       display: block;
       background-color: #6ec7ff;
-      background-image: url("https://img.freepik.com/free-photo/white-cloud-blue-sky_74190-7709.jpg");
-      background-position: center;
-
-      width: 300px;
-      height: 300px;
+      
+      width: 330px;
+      height: 330px;
 
       border-radius: 15px;
       border: 1px solid black;
+
+      color: black;
     }
 
     .location-error {
       display: flex;
       flex-wrap: wrap;
 
-      height: 300px;
+      width: 330px;
+      height: 330px;
 
       margin: 0px;
       padding: 0px;
@@ -143,10 +139,24 @@ class WeatherWidget extends LitElement {
         "d d d d d d d d" 0.2fr
         "d d d d d d d d" 0.2fr;
 
-      height: 300px;
-      width: 300px;
+      height: 330px;
+      width: 330px;
 
       flex-grow: 1;
+
+      border-radius: 15px;
+    }
+
+    .day {
+      background-image: url("https://img.freepik.com/free-photo/white-cloud-blue-sky_74190-7709.jpg");
+      background-position: center;
+    }
+
+    .night {
+      background-image: url("https://static.vecteezy.com/system/resources/previews/007/710/509/large_2x/starry-night-sky-with-stars-and-moon-in-cloudscape-background-free-photo.jpg");
+      background-position: center;
+
+      color: white;
     }
 
     .weather-icon-container {
@@ -310,10 +320,10 @@ class WeatherWidget extends LitElement {
           return res.json();
         })
         .then((data) => {
+          //full forecast data
           this._forecastData = data;
-
+          //current forecast data
           this._forecastNow = data.current_weather;
-          console.log(data);
         })
         .catch((error) => {
           console.log(error);
@@ -343,7 +353,9 @@ class WeatherWidget extends LitElement {
   //Main Widget Components
   //---------------------------------------------------------------------------------------------------------------------------------------------
   _widget() {
-    return html`<div class="main-container">
+    return html`<div
+      class="main-container ${this._forecastNow.is_day == 1 ? "day" : "night"}"
+    >
       <div class="weather-icon-container">
         <img
           style="height: 100px; width: auto"
@@ -406,6 +418,7 @@ class WeatherWidget extends LitElement {
   //---------------------------------------------------------------------------------------------------------------------------------------------
 
   render() {
+    //no location access
     if (!this._locationEnabled) {
       return html`<div class="location-error">
         <h1>
@@ -414,11 +427,13 @@ class WeatherWidget extends LitElement {
         </h1>
       </div>`;
     }
+    //error during fetch reqs
     if (this._errorOccured) {
       return html`<div class="location-error">
         <h1>Something has gone wrong. Please try again.</h1>
       </div>`;
     }
+    //still waiting on data
     if (!this._forecastData) {
       return html`<div class="location-error">
         <h1>Loading...</h1>

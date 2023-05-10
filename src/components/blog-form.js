@@ -12,6 +12,7 @@ class BlogForm extends LitElement {
     _content: { type: String },
     _user: { type: String, state: true },
     _formVisible: { type: Boolean },
+    isDarkMode: { type: Boolean },
   };
 
   static styles = css`
@@ -19,20 +20,31 @@ class BlogForm extends LitElement {
     }
 
     .open-blog-form-button {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+
       width: 100px;
-      height: 50px;
+      height: 120px;
     }
     .open-blog-form-button button {
       width: 100%;
       height: 100%;
+
+      font-size: 15px;
+    }
+
+    .open-blog-form-button img {
+      width: 100%;
+      height: auto;
     }
 
     .main-container {
-      //   background-color: red;
-      background-color: white;
+      // background-color: red;
+
       display: grid;
       grid-template:
-        "a a a b" 0.2fr
+        "a a a a" 0.2fr
         "c c c c" 0.8fr;
       gap: 5px;
 
@@ -46,32 +58,75 @@ class BlogForm extends LitElement {
       right: 0;
       margin-left: auto;
       margin-right: auto;
-      padding: 10px;
 
       border-radius: 15px;
       border: 1px solid black;
     }
 
-    h1 {
-      //   background-color: white;
+    .main-light {
+      background-color: white;
+      color: black;
+    }
+
+    .main-dark {
+      background-color: rgb(51, 51, 51);
+      color: white;
+    }
+
+    .header-container {
       grid-area: a;
 
-      height: 100%;
+      display: flex;
 
       margin: 0;
       padding: 0;
+
+      align-items: center;
+      justify-content: center;
+
+      border-top-right-radius: 15px;
+      border-top-left-radius: 15px;
     }
+
+    .header-light {
+      background-color: rgb(196, 213, 230);
+    }
+
+    .header-dark {
+      background-color: rgb(0, 80, 60); /* Green / test-colour */
+    }
+
+    h1 {
+      margin: 0;
+      padding: 0;
+
+      font-size: 50px;
+    }
+
     .form-close-button {
       //   background-color: orange;
-      grid-area: b;
-
-      height: 100%;
+      position: absolute;
+      top: 5px;
+      right: 5px;
 
       margin: 0;
       padding: 0;
+
+      border: none;
+
+      width: 50px;
+      height: 50px;
+
+      border-radius: 50%;
+      box-shadow: 0px 0px 5px inset;
     }
+    .form-close-button img {
+      width: 100%;
+      height: auto;
+    }
+
     .main-form {
-      //   background-color: lightblue;
+      // background-color: lightblue;
       grid-area: c;
       display: grid;
       grid-template:
@@ -90,6 +145,9 @@ class BlogForm extends LitElement {
 
       margin: 0;
       padding: 0;
+      margin-left: 5%;
+
+      text-align: left;
     }
     .main-form-title-input {
       //   background-color: violet;
@@ -110,6 +168,9 @@ class BlogForm extends LitElement {
 
       margin: 0;
       padding: 0;
+      margin-left: 5%;
+
+      text-align: left;
     }
     .main-form-content-input {
       //   background-color: yellow;
@@ -133,22 +194,32 @@ class BlogForm extends LitElement {
     super();
     this._formVisible = true;
     this._user = getUser();
+    this.isDarkMode = false;
+  }
+
+  _toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
   }
 
   _submitBlog(event) {
     event.preventDefault();
 
+    if (!getUser()) {
+      alert("Please Login before trying to Submit a Blog");
+      return;
+    }
+
     this._title = event.target.title.value;
     this._content = event.target.content.value;
 
-    console.log(this._title);
-    console.log(this._content);
-
     if (this._title.trim().length < 1 || this._content.trim().length < 1) {
-      console.log("Need content");
+      alert(
+        "Blog cannot be submitted without a Title and Content. Please fill in the fields and try again"
+      );
 
       return;
     }
+
     const blogURL = BASE_URL + "blog";
     const postBody = {
       title: this._title,
@@ -165,29 +236,39 @@ class BlogForm extends LitElement {
     });
     //close the blog form after
     this._formVisible = !this._formVisible;
-    //page still needs to refresh to see new blog
+
+    var el = document
+      .getElementsByTagName("comp2110-portal")[0]
+      .shadowRoot.getElementById("blogs");
+    el._addNewBlog(postBody, this._user.name);
   }
 
   _openBlogForm() {
-    this._user = getUser();
-
-    return html`<div class="open-blog-form-button"><button @click="${() =>
-      (this._formVisible = !this._formVisible)}"">Submit Blog</button></div>`;
+    return html`<div class="open-blog-form-button">
+      <button
+        @click="${() =>
+          getUser()
+            ? (this._formVisible = !this._formVisible)
+            : alert("Please Login before trying to Submit a Blog")}"
+      >
+        <img src="https://cdn-icons-png.flaticon.com/512/3573/3573196.png" />
+        Submit Blog
+      </button>
+    </div>`;
   }
   _blogForm() {
     this._user = getUser();
 
-    if (!this._user) {
-      return html`<div class="main-container">
-        <h1>Please Login before trying to submit a blog</h1>
-        <button class="form-close-button" @click="${() =>
-          (this._formVisible = !this._formVisible)}"">Close</button>
-      </div>`;
-    }
-    return html`<div class="main-container">
-      <h1>Submit a New Vlog</h1>
+    return html`<div class="main-container ${
+      this.isDarkMode ? "main-dark" : "main-light"
+    }">
+      <div class="header-container ${
+        this.isDarkMode ? "header-dark" : "header-light"
+      }"><h1>Submit a New Blog</h1></div>
       <button class="form-close-button" @click="${() =>
-        (this._formVisible = !this._formVisible)}"">Close</button>
+        (this._formVisible =
+          !this
+            ._formVisible)}""><img src="https://cdn-icons-png.flaticon.com/512/9974/9974058.png"/></button>
       <form class="main-form" @submit=${this._submitBlog}>
         <h2 class="main-form-title-label">Title:</h2> 
         <input class="main-form-title-input" name="title" placeholder="Blog Title"/> 

@@ -8,6 +8,7 @@ import "./components/blog-block.js";
 import "./components/widget-column.js";
 import "./components/ad-widget.js";
 import "./components/login-widget.js";
+import "./components/task-widget.js";
 
 import "./components/blog-form.js";
 
@@ -130,6 +131,7 @@ class Comp2110Portal extends LitElement {
           <widget-block class="widget" header="Second Widget"></widget-block>
           <holiday-widget class="widget"></holiday-widget>
           <exchange-widget class="widget"></exchange-widget>
+          <task-widget class="widget"></task-widget>
         </div>
 
         <div class="blog-container">

@@ -33,7 +33,7 @@ export const deleteUser = () => {
 export const getUser = () => {
   const userInfo = window.localStorage.getItem("user");
   if (userInfo) {
-    console.log(userInfo);
+    // console.log(userInfo);
     return JSON.parse(userInfo);
   }
   return null;

@@ -22,7 +22,7 @@ class HolidayWidget extends LitElement {
         display: block;
         width: 300px;
         min-height: 300px;
-        height: auto;
+        height: 300px;
         padding: 15px;
 
         border: solid 1px black;
@@ -98,6 +98,10 @@ class HolidayWidget extends LitElement {
       padding-bottom: 10px;
     }
     #upcoming-container ul {
+      height: 130px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      text-align:justify
       list-style: none;
     }
     #upcoming-container li {
@@ -106,6 +110,7 @@ class HolidayWidget extends LitElement {
     }
     .date {
       width:100px;
+      font-weight:bold;
     }
     .day {
       width: 210px;
@@ -159,7 +164,7 @@ class HolidayWidget extends LitElement {
   }
 
 /***************************
-      Templates Methods 
+    Templates Methods 
 ***************************/
 
   _countryTemplate(){

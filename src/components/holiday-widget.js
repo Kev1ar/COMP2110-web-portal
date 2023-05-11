@@ -12,13 +12,23 @@ class HolidayWidget extends LitElement {
 
     country: {},
     _todayStatus: {},
-    _date: { state: false},
-    _countryList: { state: false},
+    _date: {},
+    _countryList: {},
     _data: { },
   }
 
+  /* 
+   ** COLOR SCHEME: https://coolors.co/bfbdc1-6d6a75-37323e-deb841-de9e36
+   */
   static styles = css`
+  
     :host {
+        --gray: #BFBDC1;
+        --dimgray: #6D6A75;
+        --raisin: #37323E;
+        --gold: #DEB841;
+        --yellow: #DE9E36;
+
         display: block;
         width: 300px;
         min-height: 300px;
@@ -28,7 +38,7 @@ class HolidayWidget extends LitElement {
         border: solid 1px black;
         border-radius: 10px;
         
-        background-color: #553E4C;
+        background-color: var(--raisin);
         color: #fff;
         font-size: 16px;
         text-align: left;
@@ -53,16 +63,17 @@ class HolidayWidget extends LitElement {
       font-size: 1.8em;
     }
     #date-container p {
+      color: var(--gold);
       font-weight: bold;
       font-size: 0.9em;
     }
     img {
       height: 50px;
+      border: 2px solid black;
     }
     
     #country-container {
       align-self: center;
-      margin-top: 10px;
     }
     #country-container label {
       color: #fff;
@@ -70,35 +81,37 @@ class HolidayWidget extends LitElement {
       font-size: 0.8em;
     }
     #country-container select {
-      font-size: 1.1em;
+      font-weight: bold;
+      font-size: 1em;
       padding: 8px 6px;
-      width: 300px;
+      width: 100%;
       color: black;
 
-      background-color: #BAA6B2;
+      background-color: var(--gray);
       border: solid 1px black;
       border-radius: 10px;
     }
     #country-container option {
-      background-color: #BAA6B2;
-      color: #black;
+      font-size:
+      background-color: var(--gray);
+      color: #000;
     }
 
 
     #upcoming-container {
-      background-color: #BAA6B2;
+      background-color: var(--gray);
       border: 1px solid black;
-      color: black;
+      color: #000;
       border-radius: 10px;
       margin-top: 10px;
       padding: 4px;
     }
     #upcoming-container h3{
       margin-top: 3px;
-      padding-bottom: 10px;
+      padding-bottom: 5px;
     }
     #upcoming-container ul {
-      height: 130px;
+      height: 140px;
       overflow-x: hidden;
       overflow-y: auto;
       text-align:justify
@@ -109,14 +122,31 @@ class HolidayWidget extends LitElement {
       display:flex;
     }
     .date {
-      width:100px;
+      width:70px;
       font-weight:bold;
     }
     .day {
       width: 210px;
-      height: autopx;
+      height: auto;
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
     }
 
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: var(--yellow);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--raisin);
+    }
 
 
   `;
@@ -159,7 +189,7 @@ class HolidayWidget extends LitElement {
   _fetchToday () {
     fetch(HolidayWidget.TODAY_URL + this.country.toLowerCase())
     .then(response => {
-      this._todayStatus = (response.status === 204) ? "Public Holiday: No" : "Public Holiday: Yes";
+      this._todayStatus = (response.status === 204) ? "Just a normal day." : "It's a public holiday!";
     })
   }
 
@@ -198,14 +228,17 @@ class HolidayWidget extends LitElement {
                 <div id="upcoming-container">
                   <h3>Upcoming Public Holidays</h3>
                   <ul>
-                    <li> <div class="date">${this._data[0].date}</div> <div class="day">${this._data[0].name}</div > </li>
-                    <li> <div class="date">${this._data[1].date}</div> <div class="day">${this._data[1].name}</div > </li>
-                    <li> <div class="date">${this._data[2].date}</div> <div class="day">${this._data[2].name}</div > </li>
-                    <li> <div class="date">${this._data[3].date}</div> <div class="day">${this._data[3].name}</div > </li>
-                    <li> <div class="date">${this._data[4].date}</div> <div class="day">${this._data[4].name}</div > </li>
-                  </ul
+                    ${this._data.map((data) =>
+                      html`<li> <div class="date">${this._getDate(data.date)}</div> <div class="day">${data.name}</div > </li>` 
+                      )}
+                  </ul>
                   
                 </div>`;
+  }
+
+  _getDate(dateString) {
+    const date = new Date(dateString);
+    return `${HolidayWidget.MONTH_NAMES[date.getMonth()].slice(0, 3)} ${date.getDate()}`;
   }
 
   _dateTemplate() {

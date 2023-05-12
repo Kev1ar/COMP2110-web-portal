@@ -79,6 +79,14 @@ class Comp2110Portal extends LitElement {
       box-shadow: 0px 0px 5px inset;
     }
 
+    .theme-toggle-light:hover {
+      background-color: #c4d5e6;
+    }
+
+    .theme-toggle-dark:hover {
+      background-color: rgb(51, 51, 51);
+    }
+
     .theme-toggle:active {
       box-shadow: 0px 0px 15px inset;
     }
@@ -150,7 +158,25 @@ class Comp2110Portal extends LitElement {
 
     .app-footer {
       font-size: calc(12px + 0.5vmin);
+      display: flex;
+
+      height: 300px;
+
       align-items: center;
+      justify-content: space-evenly;
+
+      margin: 0px;
+      padding: 15px 15px;
+    }
+
+    .footer-light {
+      background-color: #323c49;
+      box-shadow: 0px 5px 5px black;
+    }
+
+    .footer-dark {
+      background-color: rgb(30, 30, 30); /*dark grey*/
+      box-shadow: 0px 5px 5px;
     }
 
     .app-footer a {
@@ -190,7 +216,12 @@ class Comp2110Portal extends LitElement {
         <h1>${this.header}</h1>
         <login-widget class="login"></login-widget>
 
-        <button class="theme-toggle" @click="${this._toggleTheme}">
+        <button
+          class="theme-toggle ${this.isDarkMode
+            ? "theme-toggle-dark"
+            : "theme-toggle-light"}"
+          @click="${this._toggleTheme}"
+        >
           <img src="https://cdn-icons-png.flaticon.com/512/8338/8338708.png" />
         </button>
       </header>
@@ -212,7 +243,8 @@ class Comp2110Portal extends LitElement {
         </div>
       </main>
 
-      <p class="app-footer">
+      <p class="app-footer ${this.isDarkMode ? "footer-dark" : "footer-light"}">
+        <ad-widget></ad-widget>
         A product of the COMP2110 Web Development Collective &copy; 2023
       </p>
     `;

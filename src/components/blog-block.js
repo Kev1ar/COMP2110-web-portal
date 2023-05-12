@@ -91,23 +91,28 @@ class BlockBlock extends LitElement {
         this._posts = posts.posts;
       });
   }
-
+  //dark mode switch
+  //---------------------------------------------------------------------------------------------------------------------------------------------
   _toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
   }
+  //---------------------------------------------------------------------------------------------------------------------------------------------
 
+  //Main functions
+  //---------------------------------------------------------------------------------------------------------------------------------------------
+  //method for displaying newly made blog without calling refresh
   _addNewBlog(newBlog, author) {
     const blog = {
       title: newBlog.title,
       content: newBlog.content,
       name: author,
     };
-    console.log(blog);
     const tempList = [blog];
     this._posts.forEach((post) => tempList.push(post));
     this._posts = tempList;
   }
 
+  //load more blogs
   _fetchAgain() {
     //count is number of posts
     const url = `${BASE_URL}blog?count=20&start=` + (this._posts.length + 1);
@@ -121,12 +126,15 @@ class BlockBlock extends LitElement {
         this._posts = tempList;
       });
   }
+  //---------------------------------------------------------------------------------------------------------------------------------------------
 
   // A simple formatter that just splits text into paragraphs and
   // wraps each in a <p> tag
   // a fancier version could use markdown and a third party markdown
   // formatting library
   static formatBody(text) {
+    //if there is no content
+    //display a placeholder
     if (!text) {
       return html`<p class="empty-content">No Content</p>`;
     }

@@ -197,13 +197,19 @@ class BlogForm extends LitElement {
     this.isDarkMode = false;
   }
 
+  //dark mode switch
+  //---------------------------------------------------------------------------------------------------------------------------------------------
   _toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
   }
+  //---------------------------------------------------------------------------------------------------------------------------------------------
 
+  //Blog Submission
+  //---------------------------------------------------------------------------------------------------------------------------------------------
   _submitBlog(event) {
     event.preventDefault();
 
+    //user needs to be signed in
     if (!getUser()) {
       alert("Please Login before trying to Submit a Blog");
       return;
@@ -212,6 +218,7 @@ class BlogForm extends LitElement {
     this._title = event.target.title.value;
     this._content = event.target.content.value;
 
+    //title and content cannot be blank
     if (this._title.trim().length < 1 || this._content.trim().length < 1) {
       alert(
         "Blog cannot be submitted without a Title and Content. Please fill in the fields and try again"
@@ -237,12 +244,17 @@ class BlogForm extends LitElement {
     //close the blog form after
     this._formVisible = !this._formVisible;
 
+    //add it the to the current list of blogs at the top
+    //that way no refresh is needed for new blog to show up
     var el = document
       .getElementsByTagName("comp2110-portal")[0]
       .shadowRoot.getElementById("blogs");
     el._addNewBlog(postBody, this._user.name);
   }
+  //---------------------------------------------------------------------------------------------------------------------------------------------
 
+  //Main components
+  //---------------------------------------------------------------------------------------------------------------------------------------------
   _openBlogForm() {
     return html`<div class="open-blog-form-button">
       <button
@@ -278,7 +290,7 @@ class BlogForm extends LitElement {
       </form>
     </div>`;
   }
-
+  //---------------------------------------------------------------------------------------------------------------------------------------------
   render() {
     return html`${this._openBlogForm()}
     ${this._formVisible ? null : this._blogForm()}`;

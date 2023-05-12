@@ -150,3 +150,112 @@ Group Members:
 > - ad-widget added to footer in main page
 >
 > ---
+
+# holiday-widget - Member: Kevin La
+
+- Updated date display using JavaScript Date object:
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+- Country selection from list provided by external API. Default Country: AU Australia
+- Displays next five public holidays for the selected region and their dates
+  API used: https://date.nager.at/
+- Displays flag of selected region
+  Flag API: https://flagpedia.net/download/api
+
+------------------------------------------------------
+
+
+> # exchange-widget and CSS - Member: Gian-Luca Battaglia GitName: LucaKBattaglia
+>
+> ## Description and APIs
+>
+> - First API used to gain currency rates can be found here: https://api.exchangerate.host/latest
+>   - Over 50+ globally recognised currencies are contained within this API
+>   - Currencies are updated frequently inline with active global index & currency trackers
+> - Second API is used to convert given rates at: https://api.exchangerate.host/convert?from=USD&to=EUR
+>   - Uses the updated rates from the first API to have accurate relative data
+>   - Can convert any of the 50+ currencies from as little as 0 or 0.1 to a near infinte number
+>   - Contains error prevention to prevent the use of negative numbers (result will always = 1) 
+
+> ## Error Prevention & CSS Overview
+>> - Error Prevention
+> - Added my own error prevention method as well to stop users from entering numbers lower than zero in Commit: Exchange-widget [Bug fixes & css updates]
+>
+>
+>> - Internal CSS - Overview
+> - The internal CSS used in the comp2110-portal.js and exchange-widget.js can be found here: 
+> https://www.w3schools.com/css/css_background.asp
+> https://www.w3schools.com/css/css_howto.asp
+>   - Removal of all ad-widgets
+>   - CSS layout does not extend to index.html
+>   - Two versions of CSS are implmented for user comfort dark & light modes (light not mine)
+>   - Blog & comp2110 host alterations are updated throughout various commits below:
+
+>
+> # Commit History
+>
+> ## Adding & Importing ExchangeWidget
+> ### 2023-04-30 
+>
+> - Added exchange-widget.js
+> - Imported exchange-widget into comp2110-portal
+> - Completed task "Possible Widgets to Implement"
+>
+---
+> ## CurrencyExchange Update - Linking API & Properties
+> ### 2023-04-30
+>
+> - Added new Web-Components/Properties
+> - Linked the API: https://api.exchangerate.host/latest
+> - Initialized new Properties & updated variables leftover from widget-block.
+>
+---
+> ## ExchangeWidget - Working Currency Converter
+> ### 2023-05-01
+>
+> - Linked API: 
+https://api.exchangerate.host/convert?from=USD&to=EUR
+> - Updated constructor & propertes/components
+> - Added new functions: 
+>   - ConnectedCallBack
+>   - CurrencyConverter (2nd API in here)
+> - First working version of Currency Converter Widget
+---
+> ## CSS changes (Exchange-widget adjustments)
+> ### 2023-05-06
+>
+> - Widget Update: internal CSS from Line14 - Line91 
+> - blog-block css shape & colour alterations
+>   - blog-block: blogpost colour & radius Update
+> - comp2110 first css changes (colour / formating)
+>   - comp2110: layout update (margin, alignment)
+>   - comp2110: header Update(background-color)
+
+---
+> ## Exchange-widget [Bug fixes & css updates]
+> ### 2023-05-08
+>
+> - New CSS Widget layout / Format
+> - CSS widget colour scheme changed to match the comp2110 colour scheme 
+> - Added Error prevention / Bug fixes:
+>   - Line180: Doesn't allow negatives as valid input
+>   - Line183: Displays zero & null inputs as zero in results label & can accept tofixed(2) values
+>
+---
+> ## CSS Exchange-widget Fix
+> ### 2023-05-09
+>
+> - Moved widget location in comp2110
+> - Fixed previous CSS layout - partially
+> - Updated the constructors initialization
+> - Presented currenct verison for progression check
+>   - Was pushed early due to in class check
+---
+> ## Exchange-widget Final-Commit & [Readme]
+> ### 2023-05-12
+> - Additions to previous CSS fixes
+>   - now using absolute & relative positioning
+> - Added in comments for code maintain-ability
+> - Labeled CSS with comment headers in exchange
+> - Added to READMEDRAFT Line 167 - Line 260
+> ---
+

@@ -45,6 +45,7 @@ class Comp2110Portal extends LitElement {
       height: 100px;
       justify-content: space-around;
       align-items: center;
+      z-index: 2;
     }
 
     .header-light {

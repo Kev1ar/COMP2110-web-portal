@@ -55,7 +55,7 @@ class HolidayWidget extends LitElement {
       justify-content: space-between
     }
     #date-container {
-      width: 180px;
+      width: 250px;
       text-align: left;
     }
     #date-container h1 {
@@ -63,6 +63,7 @@ class HolidayWidget extends LitElement {
       font-size: 1.8em;
     }
     #date-container p {
+      margin-left: 10px;
       color: var(--gold);
       font-weight: bold;
       font-size: 0.9em;
@@ -77,8 +78,8 @@ class HolidayWidget extends LitElement {
     }
     #country-container label {
       color: #fff;
-      margin: 0 0 0 4px;
       font-size: 0.8em;
+      text
     }
     #country-container select {
       font-weight: bold;
@@ -90,7 +91,10 @@ class HolidayWidget extends LitElement {
       background-color: var(--gray);
       border: solid 1px black;
       border-radius: 10px;
-    }
+      &:hover {
+        opacity: 0.9;
+      }
+    } 
     #country-container option {
       font-size:
       background-color: var(--gray);
@@ -122,7 +126,7 @@ class HolidayWidget extends LitElement {
       display:flex;
     }
     .date {
-      width:70px;
+      width:60px;
       font-weight:bold;
     }
     .day {
@@ -189,7 +193,7 @@ class HolidayWidget extends LitElement {
   _fetchToday () {
     fetch(HolidayWidget.TODAY_URL + this.country.toLowerCase())
     .then(response => {
-      this._todayStatus = (response.status === 204) ? "Just a normal day." : "It's a public holiday!";
+      this._todayStatus = (response.status === 204) ? "Today - Just a normal day." : "Today - It's a public holiday!";
     })
   }
 

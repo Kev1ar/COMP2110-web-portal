@@ -57,7 +57,6 @@ class TaskWidget extends LitElement {
     
     #post-button {
       text-decoration: none;
-      margin-right: 10px;
       height: 40px;
       width: 80px;
       
@@ -126,7 +125,6 @@ class TaskWidget extends LitElement {
       font-weight: bold;
     }
 
-
     .task-checkbox {
       position: relative;
       width: 1.5em;
@@ -153,6 +151,7 @@ class TaskWidget extends LitElement {
         opacity: 0;
       }
       &:checked {
+        
         box-sizing: border-box;
         color: white;
         border-color: green;
@@ -169,6 +168,7 @@ class TaskWidget extends LitElement {
       font-size: 1em;
       padding: 0 0.25em 0;
       user-select: none;
+      z-index: 0; 
     }
 
     .task-checkbox:checked + label {
@@ -281,13 +281,6 @@ _setAllTaskStatus () {
     this._fetchTasks();
   }
 
-  _handlePost2(task_object) {
-    const checkBoxList = this.shadowRoot.querySelectorAll(".task-checkbox");
-    const div= this.shadowRoot.querySelectorAll(".task-checkbox");
-    console.log(checkBoxList);
-
-  }
-
   _tasksTemplate() {
     return html`${this._pendingTasks.map( (task) => { 
       return html`
@@ -301,10 +294,7 @@ _setAllTaskStatus () {
         `
       })}`
     }
-          // <input @click="${() => this._handlePost2(task)}" class="task-checkbox" id="${task.id}" type="checkbox" />
-          // <label class="task-title" for="${task.id}">
-          //   ${task.text}
-          // </label>
+  
     _getTaskDate(task) {
       const date = new Date(task.timestamp);
       return html`${date.getDate()} ${TaskWidget.MONTHS[date.getMonth()]}`;
@@ -335,7 +325,7 @@ _setAllTaskStatus () {
     let taskTitle = this.shadowRoot.getElementById("task-title");
     // console.log(taskTitle.value);
     // this._postTask (taskTitle.value);
-    this._postTask ("40 characters is about 1 sentence. A sentence.");
+    this._postTask ("40 characters .");
     taskTitle.value = "";
   }
 

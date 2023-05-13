@@ -23,7 +23,7 @@ class BlogForm extends LitElement {
       position: fixed;
       bottom: 15px;
       right: 15px;
-
+      
       width: 100px;
       height: 120px;
     }
@@ -40,6 +40,7 @@ class BlogForm extends LitElement {
     }
 
     .main-container {
+      z-index: 2;
       // background-color: red;
 
       display: grid;

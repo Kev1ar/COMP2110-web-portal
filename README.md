@@ -115,6 +115,16 @@ For more infomation about the assignment read the TASK-OUTLINE.md file for the o
 >   - blogs cannot be created with no title or content
 >   - newly created blogs are temporarily added to the blog-block in order to display it with no need for the page to be refreshed
 >
+---
+># Random fact widget - Member: Zion Xiaoxi Su
+>
+>## Description
+>- A widget showing a random fact about the current date from <http://numbersapi.com/>
+    -get current date, get number of month and date
+    -combine url and date variable
+    -find out data kind of content in given url, put it on the right widget
+
+---
 > ## Commit History
 >
 > ### 2023-04-20

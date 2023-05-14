@@ -183,6 +183,7 @@ class Comp2110Portal extends LitElement {
     .app-footer a {
       margin-left: 5px;
     }
+
   `;
 
   constructor() {

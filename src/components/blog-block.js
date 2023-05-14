@@ -20,6 +20,7 @@ class BlockBlock extends LitElement {
 
   static styles = css`
     :host {
+      overflow-x: hidden;
     }
 
     .blogpost {

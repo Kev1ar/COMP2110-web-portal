@@ -7,11 +7,11 @@ class TaskWidget extends LitElement {
   static MAX_TASKS = 4;
   static MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  static NUMBER_OF_TASKS = 15;
 
   static properties = {
-    _taskData: {}, // Array of task Objects
-    _pendingTasks: {}, // Array of pending task Objects
-    _update: {state:true},
+    _pendingTasks: {}, // Array of pending task Objects (client-side) objects: {text: "", id: ""}
+    _update: {state: true},
   }
 
   static styles = css`
@@ -20,13 +20,10 @@ class TaskWidget extends LitElement {
       --darkgreen: #61892F;
       --grey: #6B6E70;
       --dark-grey: #222629;
-    }
 
-
-    :host {
-        width: 300px;
-        height: 300px;
-        min-height: 300px;
+      width: 300px;
+      min-height: 300px;
+      height: 300px;
         padding: 15px 15px;
 
         font-family: 'Roboto';
@@ -43,6 +40,10 @@ class TaskWidget extends LitElement {
     }
 
 
+    .loading-message {
+      text-align: center;
+    }
+
     #header-template {
       width: 100%;
       display: flex;
@@ -55,18 +56,24 @@ class TaskWidget extends LitElement {
       font-size: 2em;
     }
     
-    #post-button {
-      text-decoration: none;
-      height: 40px;
+    #update-button {
       width: 80px;
+      padding: 8px;
+      text-decoration: none;
       
-      border: var(--grey) solid 2px;
-      border-radius: 10px;
+      border: none;
+      border-radius: 5px;
       background-color: var(--grey);
 
       color: #fff;
       font-weight: bold;
       cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+      &:active {
+        background-color: var(--darkgrey);
+      }
     }
     
 
@@ -108,19 +115,29 @@ class TaskWidget extends LitElement {
       padding: 8px;
       border-radius: 5px;
       border: var(--grey) solid 1px;
-      font-weight: bold;
+      font-size: 1.1em;
       background-color: var(--dark-grey);
     }
 
     #postform-container button {
+      width: 80px; 
+      padding:8px;
       margin-left: 5px;
       border: none;
       border-radius: 5px;
-      padding:8px;
+     
       background-color: var(--darkgreen);
       color: #fff;
+      cursor: pointer;
       font-weight: bold;
-    }
+      &:hover {
+        opacity: 0.7;
+      }
+      &:active {
+        background-color: var(--darkgrey);
+        border: var(--darkgrey) solid 2px;
+      }
+    } 
     #task-title::placeholder {
       font-weight: bold;
     }
@@ -145,7 +162,7 @@ class TaskWidget extends LitElement {
         width: 8px;
         height: 14px;
         border-style: solid;
-        border-color: #fff;
+        border-color: #000;
         border-width: 0 2px 2px 0;
         transform: rotate(45deg);
         opacity: 0;
@@ -154,8 +171,8 @@ class TaskWidget extends LitElement {
         
         box-sizing: border-box;
         color: white;
-        border-color: green;
-        background: green;
+        border-color: var(--green);
+        background: var(--green);
         &::before {
           opacity: 1;
         }
@@ -163,73 +180,84 @@ class TaskWidget extends LitElement {
     }
     
     .task-label {
-      position: relative;
+      display: flex;
+      align-items: center;
       cursor: pointer;
       font-size: 1em;
       padding: 0 0.25em 0;
       user-select: none;
-      z-index: 0; 
     }
 
     .task-checkbox:checked + label {
+      color: var(--grey);
       text-decoration: line-through;
+      text-decoration-color: var(--green);
+      text-decoration-thickness: 2px;
     }
   `;
 
   constructor() {
     super();
-    this._update = true;
-    this._pendingTasks = [];
     if(getUser())
         this._fetchTasks();
+    this._update = true;
   }
 
   connectedCallback() {
     super.connectedCallback();
   }
 
-
 /***************************
         Fetch Methods
 ****************************/
 
+/* 
+  Fetchs the last NUM_OF_TASKS of tasks from server
+  THEN Calls _getPendingTasks() and updates widget
+*/
   _fetchTasks () {
     // FORMAT URL: tasks?start=X&count=3X
-    // UNOPTIMIZED: ONLY WORKS WITH X TASKS (PREVENT OVERLOADING)
-    fetch(`${BASE_URL}tasks?count=50`, {
+    fetch(`${BASE_URL}tasks?count=${TaskWidget.NUMBER_OF_TASKS}`, {
         headers: {
             Authorization: `Basic ${getUser().token}`,
-            'Accept': 'application/json'
+            'Accept': 'application/json',
         }
     })
     .then((response) => response.json())
     .then((data) => {
-        this._taskData = data.tasks;
-        this._getPendingTasks();
-        console.log()
-        // console.log(this._taskData.length);
-        // console.log("Tasks Fetched");
-        // console.log(this._taskData);
+        console.log(data.tasks);
+        this._getPendingTasks(data.tasks);
+        this._update = !this._update;
     });
   }
   
-  _postTask (task_name) {
+  /*
+    Takes task name & posts it to server
+    After receiving response: stores new task object AT BEGINNNING of _pendingList
+                              re-renders widget
+  */
+
+   _postTask (task_name) {
     const taskObject = { text: task_name }
     fetch(`${BASE_URL}tasks`, {
         method: "POST",
         body: JSON.stringify(taskObject),
         headers: { 
-            Authorization: "Basic " + getUser().token,
-            "Content-Type": "application/json" },
+            Authorization: `Basic ${getUser().token}`,
+            "Content-Type": "application/json",
+            'Accept': 'application/json',
+           },
     })
-    .then(() => {
-      console.log(`New Task Posted: ${task_name}`);
-      this._fetchTasks();
-      });
+    .then(response => response.json())
+    .then(data => {
+      // console.log(data); // debugger: print response payload for: POST
+      const taskObject = {text: task_name, id: data.id};
+      this._pendingTasks.unshift(taskObject);
+      this._update = !this._update;
+    })
     };
 
   _updateTaskStatus (task) {
-    // let newStatus = (task.status === "pending") ? "completed" : "pending";
     const newStatus = "completed";
     fetch(`${BASE_URL}tasks/${task.id}`, {
         method: "POST",
@@ -239,7 +267,6 @@ class TaskWidget extends LitElement {
             "Content-Type": "application/json" },
     })
     .then(() => {
-      console.log(`# Status Updated`);
       const index = this._pendingTasks.indexOf(task);
       this._pendingTasks.splice(index,1);
       this._update = !this._update;
@@ -249,7 +276,7 @@ class TaskWidget extends LitElement {
  
 
 /** 
- * Set status of all tasks on server.
+ * Sets status of all tasks on the server
  * WARNING: remove fetchTasks from _updateTaskStatus before use (prevent OVERLOAD)
  */
 _setAllTaskStatus () {
@@ -257,39 +284,47 @@ _setAllTaskStatus () {
 }
 
 /***************************
-      Templates Methods 
+      Templates & Helper Methods
 ***************************/
 
   _headerTemplate() {
     return html`
     <div id="header-template">
       <h1 id="title"># todo.</h1>
-      <button id="post-button" @click="${() => this._handlePost()}"> Update</button>
+      <button id="update-button" title="Use this button to remove checked off tasks" @click="${() => this._handleUpdate()}"> Remove</button>
     </div>
     `;
   }
 
-  _handlePost() {
+  /*
+    UPDATE BUTTON HANDLER
+    - Gets list of checkboxes from widget
+    - If box is checked, post task as completed
+    - remove task from client-side _pendingTasks
+    - re-render
+  */
+    _handleUpdate() {
     const checkBoxList = this.shadowRoot.querySelectorAll(".task-checkbox");
-    console.log(checkBoxList);
-    console.log(this._pendingTasks);
     for(let i = 0; i < checkBoxList.length; i++){
-      if(checkBoxList[i].checked){
+      // debug statement: check if checkBoxList mirrors items in _pendingTasks
+      // console.log(`${checkBoxList[i].id} == ${this._pendingTasks[i].id}`)
+      if(checkBoxList[i].checked)
         this._updateTaskStatus(this._pendingTasks[i]);
-      }
     }
-    this._fetchTasks();
   }
 
   _tasksTemplate() {
     return html`${this._pendingTasks.map( (task) => { 
       return html`
         <div class="task-container">
-
-          <input class="task-checkbox" id="${task.id}" name="${task.id}" value="${task.id}" type="checkbox">
-          <label class="task-label" for="${task.id}" data-content=" ${task.text}"> ${task.text} </label>
-
-
+          <input class="task-checkbox" 
+            id="${task.id}" 
+            name="${task.id}" 
+            value="${task.id}" 
+            type="checkbox">
+          <label class="task-label" 
+            for="${task.id}" 
+            data-content=" ${task.text}"> ${task.text} </label>
         </div>
         `
       })}`
@@ -307,7 +342,7 @@ _setAllTaskStatus () {
           <input type="text" id="task-title" placeholder="Task name" maxlength="50">
           <button type="submit" @click="${(e) => {
                   e.preventDefault();
-                  this._handleForm();
+                  this._handleSubmit();
           }}">Add Task</button>
         </form>
       </div>
@@ -315,43 +350,47 @@ _setAllTaskStatus () {
   } 
 
   /** 
-   * Handles form SUBMIT & NEW TASK creation
+   * SUBMIT TASK HANDLER
    */
-  _handleForm() {
+  _handleSubmit() {
     if(this._pendingTasks.length >= TaskWidget.MAX_TASKS){
-      alert("Maximum task limit reached. Try ticking some tasks off!"); 
+      alert("Maximum task limit reached.  Try getting some things done first!"); 
       return;
     }
     let taskTitle = this.shadowRoot.getElementById("task-title");
-    // console.log(taskTitle.value);
-    // this._postTask (taskTitle.value);
-    this._postTask ("40 characters .");
+    this._postTask (taskTitle.value);
     taskTitle.value = "";
   }
 
   /** 
-   * Extracts #[MAX_TASKS] pending tasks into _pendingTasks array
+   * Extracts a #number of pending tasks into _pendingTasks array, then re-renders widget
+   * Array is in order of MOST RECENT tasks first
    */
-  _getPendingTasks() {
+  _getPendingTasks(taskData) {
     this._pendingTasks = [];
-    for(let i = 0; i < this._taskData.length && this._pendingTasks.length < TaskWidget.MAX_TASKS; i++) {
-      if(this._taskData[i].status === "pending")
-        this._pendingTasks.push(this._taskData[i]);
+    for(let i = 0; i < taskData.length && this._pendingTasks.length < TaskWidget.MAX_TASKS; i++) {
+      if(taskData[i].status === "pending"){
+        let taskObject = {text: taskData[i].text, id: taskData[i].id}
+        this._pendingTasks.push(taskObject);
+      }
     }
-    console.log(this._pendingTasks);
+    console.log(this._pendingTasks); // prints out list of pending tasks
     this._update = !this._update;
   }
 
+
   render() {
-    if(getUser() && this._taskData) {
-      return html`
-        ${this._headerTemplate()}
-        ${this._tasksTemplate()}
-        ${this._taskFormTemplate()}
-      `;
+    if(!getUser())
+      return html`<h3 class="loading-message">Please Login to Access Tasks...</h3>`;
+    if(!this._pendingTasks)
+      return html`<h3 class="loading-message">Fetching Tasks, Please Wait...</h3>`;
+    return html`
+      ${this._headerTemplate()}
+      ${this._tasksTemplate()}
+      ${this._taskFormTemplate()}
+    `;
     }
-    return html`<h3 id="loading-message">Please Login to Access Tasks...</h3>`;
-  }
+  
 }
 
 customElements.define('task-widget', TaskWidget);

@@ -2,42 +2,48 @@
 
 This respository is Group 81's COMP2110 portal implmentation for the front-end assignment ( of class 2023). The page contains widgets that students may find useful such as a weather forecast, currency convertor, etc. Infomation displayed by these widgets are primarily obtained through external APIs. The page also contains the assignment's starter code for login and authentication and functional a blog segment.
 
-Group Members:
-
-- Gian-Luuca Battaglia
-- Kevin La 45229082
-- Earl Stephen Santos
-- Xiaoxi (Zion) Su
-
-# Components
-
-> # comp-2110-portal - Group
+> # Group Members:
+> ## Gian-Luca Battaglia, 47416084
+> - ### UserName:  LucaKBattaglia
+> ---------------------------------
+> ## Kevin La, 45229082  
+> - ### UserName:  Kev1ar   
+> ---------------------------------           
+> ##  Earl Stephen, 45605335
+> - ### UserName: Santos
+> ---------------------------------
+> ##  Xiaoxi (Zion) Su, 46340661
+> - ### UserName:  Zion-XiaoxiSu-OGLocGo
+ ---------------------------------
+> # Components
+>> # comp-2110-portal - Group
 >
-> - portal page is divided into two main sections
+> - Overall theme can be toggle using button located in the header
+> - Users can add blogs through Submit Blog, (requires user log-in)
+> - The portal page is divided into two main sections:
 >   - widgets
 >   - blogs
->   - overall theme can be toggle using button located in the header
 >
 > ---
-
-> # blog-block - Group
+> 
+>> # blog-block - Group
 >
 > - Main API used for blogs can be found here https://github.com/COMP2110-2023/comp2110-portal-server/#blog
 > - upon loading the page 20 blogs are displayed
 > - additional blogs can be loaded via the load more button at the bottom of the page
 >
-> ---
+ ---
 
-# holiday-widget - Member: Kevin La
-
-- Updated date display using JavaScript Date object:
-  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-- Country selection from list provided by external API. Default Country: AU Australia
-- Displays next five public holidays for the selected region and their dates
-  API used: https://date.nager.at/
-- Displays flag of selected region
-  Flag API: https://flagpedia.net/download/api
-
+># holiday-widget - Member: Kevin La
+>
+>- Updated date display using JavaScript Date object:
+>   - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+>- Country selection from list provided by external API. Default Country: AU Australia
+>- Displays next five public holidays for the selected region and their dates
+>   - API used: https://date.nager.at/
+>- Displays flag of selected region
+>  Flag API: https://flagpedia.net/download/api
+> 
 ---
 
 > # weather-widget and blog-form - Member: Earl Stephen Santos
@@ -149,24 +155,14 @@ Group Members:
 > - main page footer styling added
 > - ad-widget added to footer in main page
 >
-> ---
-
-# holiday-widget - Member: Kevin La
-
-- Updated date display using JavaScript Date object:
-  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-- Country selection from list provided by external API. Default Country: AU Australia
-- Displays next five public holidays for the selected region and their dates
-  API used: https://date.nager.at/
-- Displays flag of selected region
-  Flag API: https://flagpedia.net/download/api
 
 ------------------------------------------------------
 
 
-> # exchange-widget and CSS - Member: Gian-Luca Battaglia GitName: LucaKBattaglia
+> # exchange-widget and CSS - Member: Gian-Luca Battaglia 
+>> ## GitName: LucaKBattaglia
 >
-> ## Description and APIs
+> # Description and APIs
 >
 > - First API used to gain currency rates can be found here: https://api.exchangerate.host/latest
 >   - Over 50+ globally recognised currencies are contained within this API
@@ -175,7 +171,7 @@ Group Members:
 >   - Uses the updated rates from the first API to have accurate relative data
 >   - Can convert any of the 50+ currencies from as little as 0 or 0.1 to a near infinte number
 >   - Contains error prevention to prevent the use of negative numbers (result will always = 1) 
-
+> ------------------------------------------------------
 > ## Error Prevention & CSS Overview
 >> - Error Prevention
 > - Added my own error prevention method as well to stop users from entering numbers lower than zero in Commit: Exchange-widget [Bug fixes & css updates]
@@ -185,11 +181,10 @@ Group Members:
 > - The internal CSS used in the comp2110-portal.js and exchange-widget.js can be found here: 
 > https://www.w3schools.com/css/css_background.asp
 > https://www.w3schools.com/css/css_howto.asp
->   - Removal of all ad-widgets
 >   - CSS layout does not extend to index.html
->   - Two versions of CSS are implmented for user comfort dark & light modes (light not mine)
+>   - Two versions of CSS are implmented for user comfort dark & light modes (lightmode created by santos)
 >   - Blog & comp2110 host alterations are updated throughout various commits below:
-
+>------------------------------------------------------
 >
 > # Commit History
 >
@@ -200,7 +195,7 @@ Group Members:
 > - Imported exchange-widget into comp2110-portal
 > - Completed task "Possible Widgets to Implement"
 >
----
+>
 > ## CurrencyExchange Update - Linking API & Properties
 > ### 2023-04-30
 >
@@ -208,7 +203,7 @@ Group Members:
 > - Linked the API: https://api.exchangerate.host/latest
 > - Initialized new Properties & updated variables leftover from widget-block.
 >
----
+>
 > ## ExchangeWidget - Working Currency Converter
 > ### 2023-05-01
 >
@@ -219,7 +214,8 @@ https://api.exchangerate.host/convert?from=USD&to=EUR
 >   - ConnectedCallBack
 >   - CurrencyConverter (2nd API in here)
 > - First working version of Currency Converter Widget
----
+>
+>
 > ## CSS changes (Exchange-widget adjustments)
 > ### 2023-05-06
 >
@@ -229,8 +225,8 @@ https://api.exchangerate.host/convert?from=USD&to=EUR
 > - comp2110 first css changes (colour / formating)
 >   - comp2110: layout update (margin, alignment)
 >   - comp2110: header Update(background-color)
-
----
+>
+>
 > ## Exchange-widget [Bug fixes & css updates]
 > ### 2023-05-08
 >
@@ -240,7 +236,8 @@ https://api.exchangerate.host/convert?from=USD&to=EUR
 >   - Line180: Doesn't allow negatives as valid input
 >   - Line183: Displays zero & null inputs as zero in results label & can accept tofixed(2) values
 >
----
+>
+>
 > ## CSS Exchange-widget Fix
 > ### 2023-05-09
 >
@@ -249,7 +246,8 @@ https://api.exchangerate.host/convert?from=USD&to=EUR
 > - Updated the constructors initialization
 > - Presented currenct verison for progression check
 >   - Was pushed early due to in class check
----
+>
+>
 > ## Exchange-widget Final-Commit & [Readme]
 > ### 2023-05-12
 > - Additions to previous CSS fixes
@@ -257,5 +255,19 @@ https://api.exchangerate.host/convert?from=USD&to=EUR
 > - Added in comments for code maintain-ability
 > - Labeled CSS with comment headers in exchange
 > - Added to READMEDRAFT Line 167 - Line 260
+> 
+>
+> ## Exchange-widget Final-Commit & [Readme]
+> ### 2023-05-12
+> - Additions to previous CSS fixes
+>   - now using absolute & relative positioning
+> - Added in comments for code maintain-ability
+> - Labeled CSS with comment headers in exchange
+> - Added to READMEDRAFT Line 167 - Line 260
+> 
+>
+> ## README.md Update
+> ### 2023-05-14 
+> - Minor display updates to READMEDRAFT.md
+> - Moving Content from READMEDRAFT.md to README.md
 > ---
-

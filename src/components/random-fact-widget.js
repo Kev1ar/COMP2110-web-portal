@@ -6,8 +6,10 @@ import {
 
 class RandomFactWidget extends LitElement {
 
+  static properties = {
 
-  static properties = {};
+    _data: {}
+  };
 
   //styling goes here
   //this is just placeholder, but in general the rest of the widgets have similar height/width, and borders
@@ -28,38 +30,43 @@ class RandomFactWidget extends LitElement {
 
   constructor() {
     super();
-    const factDiv = document.querySelector("#fact-widget");
+    var factDiv = document.querySelector("#fact-widget");
     // Get today's date 
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    // months are zero indexed 
-    const day = today.getDate(); // Send API request to numbersapi.com 
+    var today = new Date();
+    this.month = today.getMonth() + 1;
+  //get number of month and day
+    this.day = today.getDate();
+    console.log(this.month + "." + this.day);
   }
 
   connectedCallback() {
     super.connectedCallback();
-  }
+    var url = 'http://numbersapi.com/'.concat(this.month, '/', this.day).concat('/date')
 
-
-  _fenchFacts() {
-    fetch(`http://numbersapi.com/${month}/${day}/date`)
-      .then(response => response.text())
-      .then(data => {
-        // Display fact in the widget 
-        factDiv.innerHTML = data;
-      })
-      .catch(error => console.error(error));
+    fetch(url)
+    .then(response => response.text())
+    .then(data => { 
+        this._data = data;
+    });
   }
 
 
 
-
-
+  _facts() {
+    return html`
+      <h1>Fun Fact About Today</h1>
+      
+      <h2>${this._data}</h2>
+    `
+  }
 
   //main code goes here
   render() {
+   
+    
+
     return html`
-    <p>${this._fenchFacts()}</p>
+      ${this._facts()}
   `;
   }
 

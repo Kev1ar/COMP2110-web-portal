@@ -41,6 +41,13 @@ class RandomFactWidget extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    var url = 'http://numbersapi.com/'.concat(this.month, '/', this.day).concat('/date')
+
+    fetch(url)
+    .then(response => response.text())
+    .then(data => { 
+        this._data = data;
+    });
   }
 
 
@@ -55,13 +62,7 @@ class RandomFactWidget extends LitElement {
 
   //main code goes here
   render() {
-    var url = 'http://numbersapi.com/'.concat(this.month, '/', this.day).concat('/date')
-
-    fetch(url)
-    .then(response => response.text())
-    .then(data => { 
-        this._data = data;
-    });
+   
     
 
     return html`

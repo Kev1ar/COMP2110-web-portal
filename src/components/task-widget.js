@@ -381,7 +381,7 @@ _setAllTaskStatus () {
 
   render() {
     if(!getUser())
-      return html`<h3 class="loading-message">Please Login to Access To-Do-List...</h3>`;
+      return html`<h3 class="loading-message">Please Login & Refresh.</h3>`;
     if(!this._pendingTasks)
       return html`<h3 class="loading-message">Fetching Tasks, Please Wait...</h3>`;
     return html`

@@ -6,9 +6,9 @@ import {
 
 class RandomFactWidget extends LitElement {
 
-
   static properties = {
-    data:{}
+
+    _data: {}
   };
 
   //styling goes here
@@ -30,12 +30,13 @@ class RandomFactWidget extends LitElement {
 
   constructor() {
     super();
-    const factDiv = document.querySelector("#fact-widget");
+    var factDiv = document.querySelector("#fact-widget");
     // Get today's date 
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    // months are zero indexed 
-    const day = today.getDate(); // Send API request to numbersapi.com 
+    var today = new Date();
+    this.month = today.getMonth() + 1;
+  //get number of month and day
+    this.day = today.getDate();
+    console.log(this.month + "." + this.day);
   }
 
   connectedCallback() {
@@ -43,29 +44,26 @@ class RandomFactWidget extends LitElement {
   }
 
 
-  _fenchFacts() {
-    fetch(`http://numbersapi.com/${month}/${day}/date`)
-      .then(response => response.text())
-      .then(data => {
-        // Display fact in the widget 
-        factDiv.innerHTML = data;
-      })
-
-  }
 
   _facts() {
     return html`
       <h1>Fun Fact About Today</h1>
-      <h2>${this.data}</h2>
+      
+      <h2>${this._data}</h2>
     `
   }
 
-
-
-
-
   //main code goes here
   render() {
+    var url = 'http://numbersapi.com/'.concat(this.month, '/', this.day).concat('/date')
+
+    fetch(url)
+    .then(response => response.text())
+    .then(data => { 
+        this._data = data;
+    });
+    
+
     return html`
       ${this._facts()}
   `;

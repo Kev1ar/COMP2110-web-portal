@@ -195,7 +195,7 @@ class BlogForm extends LitElement {
     super();
     this._formVisible = true;
     this._user = getUser();
-    this.isDarkMode = false;
+    this.isDarkMode = true;
   }
 
   //dark mode switch

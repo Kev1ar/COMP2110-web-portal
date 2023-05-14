@@ -14,74 +14,80 @@ class LoginWidget extends LitElement {
 
   static styles = css`
     :host {
+      --green: #86C232;
+      --darkgreen: #61892F;
+      --grey: #6B6E70;
+      --darkgrey: #222629;
+      width: auto;
+      font-size: 14px;
+      color: lightgrey;
     }
 
     form {
       display: grid;
-      grid-template:
-        "ul uf uf uf" 0.4fr
-        "pl pf pf pf" 0.4fr
-        "empty empty sb sb" 0.2fr;
-      gap: 5px;
+      grid-template-columns: auto auto;
+      grid-template-rows: 20px 30px;
+      grid-template-areas:
+        "a b"
+        "c c";
+
+        column-gap: 5px;
+        row-gap: 0px;
 
       width: auto;
       height: auto;
-
+    
       margin: 0px;
       padding: 0px;
     }
 
-    .userLabel {
-      grid-area: ul;
-
-      width: 150px;
-      height: 20px;
-
-      margin: 0px;
-      padding: 0px;
-
-      font-size: 20px;
-    }
-    .userField {
-      grid-area: uf;
-
-      width: auto;
-      height: 20px;
-
-      margin: 0px;
-      padding: 0px;
-    }
-
-    .passLabel {
-      grid-area: pl;
-
-      width: 150px;
-      height: 20px;
-
-      margin: 0px;
-      padding: 0px;
-
-      font-size: 20px;
-    }
-    .passField {
-      grid-area: pf;
-
-      width: auto;
-      height: 20px;
-
-      margin: 0px;
-      padding: 0px;
+    .field {
+      border: none;
+      border-radius: 3px;
+      padding: 2px; 4px;
     }
 
     .submitBtn {
-      grid-area: sb;
+      grid-area: c;
+      justify-self: center;
+      align-self: center;
 
-      width: auto;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      background-color: var(--green);
+      width: 100%;
       height: 20px;
-
+      
       margin: 0px;
       padding: 0px;
+      &:hover {
+        background-color: var(--darkgreen);
+      }
+      &:focus {
+        opacity: 0.8;
+      }
+    } 
+
+    .logout {
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      background-color: var(--green);
+      width: 55px;
+      height: 25px;
+      
+      margin: 0px;
+      padding: 0px;
+      &:hover {
+        background-color: var(--darkgreen);
+      }
     }
+
   `;
 
   constructor() {
@@ -101,6 +107,10 @@ class LoginWidget extends LitElement {
     })
       .then((result) => result.json())
       .then((response) => {
+        if(response.error){
+          console.log("Login Invalid");
+          return;
+        }
         this.user = response;
         storeUser(response);
       });
@@ -114,13 +124,12 @@ class LoginWidget extends LitElement {
   render() {
     if (this.user) {
       return html`<p>Logged in as ${this.user.name}</p>
-        <button @click=${this.logout}>Logout</button>`;
+        <button class="logout" @click=${this.logout}>Logout</button>`;
     }
-    return html` <form @submit=${this.submitForm}>
-      <h1 class="userLabel">Username:</h1>
-      <input class="userField" name="username" />
-      <h1 class="passLabel">Password:</h1>
-      <input class="passField" type="password" name="password" />
+    return html` 
+    <form @submit=${this.submitForm}>
+      <input class="userField field" placeholder="username" name="username" />
+      <input class="passField field" placeholder="password" type="password" name="password" />
       <input class="submitBtn" type="submit" value="Login" />
     </form>`;
   }

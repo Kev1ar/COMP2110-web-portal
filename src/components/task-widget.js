@@ -54,6 +54,7 @@ class TaskWidget extends LitElement {
     
     h1 {
       font-size: 2em;
+      color: var(--green);
     }
     
     #update-button {
@@ -225,7 +226,6 @@ class TaskWidget extends LitElement {
     })
     .then((response) => response.json())
     .then((data) => {
-        console.log(data.tasks);
         this._getPendingTasks(data.tasks);
         this._update = !this._update;
     });
@@ -374,7 +374,7 @@ _setAllTaskStatus () {
         this._pendingTasks.push(taskObject);
       }
     }
-    console.log(this._pendingTasks); // prints out list of pending tasks
+    // console.log(this._pendingTasks); // prints out list of pending tasks
     this._update = !this._update;
   }
 

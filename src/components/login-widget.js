@@ -107,12 +107,15 @@ class LoginWidget extends LitElement {
     })
       .then((result) => result.json())
       .then((response) => {
-        if(response.error){
+        if(response.error === "login incorrect"){
           console.log("Login Invalid");
           return;
         }
-        this.user = response;
-        storeUser(response);
+        else {
+          this.user = response;
+          storeUser(response);
+        }
+        
       });
   }
 

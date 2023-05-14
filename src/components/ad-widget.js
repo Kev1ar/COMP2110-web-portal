@@ -9,17 +9,14 @@ class AdWidget extends LitElement {
   static styles = css`
     :host {
         display: block;
-        width: 250px;
-        height: 250px;
+        width: 125px;
+        height: 125px;
         background-color: azure;
     }
-    :host p {
-      position: relative;
-      top: -50px;
-      text-align: right;
-      padding-right: 10px;
-      z-index: 0;
-      color: white;
+    
+    img {
+      width: 100%;
+      height: 100%;
     }
   `;
 
@@ -32,7 +29,6 @@ class AdWidget extends LitElement {
     return html`
   <div>
         <img src=${this.adUrl} alt="Advertisment">
-        <p>Advertisment</p>
   </div>
     `;
   }

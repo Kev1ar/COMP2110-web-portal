@@ -20,9 +20,17 @@ class BlockBlock extends LitElement {
 
   static styles = css`
     :host {
+      --green: #86C232;
+      --darkgreen: #61892F;
+      --grey: #6B6E70;
+      --dark-grey: #222629;
+
+
+
       overflow-x: hidden;
     }
 
+    
     .blogpost {
       text-align: left;
 
@@ -40,7 +48,7 @@ class BlockBlock extends LitElement {
     }
 
     .blogpost-dark {
-      background-color: rgb(51, 51, 51); /*light grey*/
+      background-color: var(--darkgrey); /*light grey*/
     }
 
     .blogpost h2 {
@@ -55,7 +63,7 @@ class BlockBlock extends LitElement {
     }
 
     .h2-dark {
-      background-color: rgb(0, 80, 60); /* Green / test-colour */
+      background-color: var(--darkgreen);
     }
 
     .empty-content {
@@ -83,7 +91,7 @@ class BlockBlock extends LitElement {
 
   constructor() {
     super();
-    this.isDarkMode = false;
+    this.isDarkMode = true;
     //count is number of posts
     const url = `${BASE_URL}blog?count=20`;
     fetch(url)

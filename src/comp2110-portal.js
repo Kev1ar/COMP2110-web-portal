@@ -25,24 +25,34 @@ class Comp2110Portal extends LitElement {
 
   static styles = css`
     :host {
+
+      --green: #86C232;
+      --darkgreen: #61892F;
+      --grey: #6B6E70;
+      --darkgrey: #222629;
+      
       min-height: 100vh;
       font-size: 14pt;
       color: #1a2b42;
       max-width: 960px;
       margin: 0 auto;
       text-align: center;
-      background-color: lightgoldenrodyellow;
       margin: 0px;
       padding: 0px;
       color: rgb(192, 192, 192);
     }
 
     header {
+      
       position: fixed;
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
+
+
       width: 100%;
-      height: 100px;
+      height: auto;
+      min-height: 110px;
       justify-content: space-around;
       align-items: center;
       z-index: 2;
@@ -50,12 +60,17 @@ class Comp2110Portal extends LitElement {
 
     .header-light {
       background-color: #323c49;
-      box-shadow: 0px 5px 5px black;
+      box-shadow: 0px 1px 10px black;
     }
 
     .header-dark {
       background-color: rgb(30, 30, 30); /*dark grey*/
-      box-shadow: 0px 5px 5px;
+      box-shadow: 0px 1px 10px grey;
+    }
+
+    .header-dark h1 {
+      color: var(--green);
+      font-size: 30px;
     }
 
     header h1 {
@@ -64,15 +79,17 @@ class Comp2110Portal extends LitElement {
     }
 
     .login {
-      margin: 0px;
-      padding: 0px;
-      margin-top: 15px;
+      
+      margin: 0 5% 0 0;;
+      padding: 20px 0 0 0;
     }
 
     .theme-toggle {
       background: none;
       border: none;
 
+
+      cursor: pointer;
       width: 75px;
       height: 75px;
 
@@ -85,7 +102,7 @@ class Comp2110Portal extends LitElement {
     }
 
     .theme-toggle-dark:hover {
-      background-color: rgb(51, 51, 51);
+      background-color: #fff;
     }
 
     .theme-toggle:active {
@@ -158,16 +175,23 @@ class Comp2110Portal extends LitElement {
     }
 
     .app-footer {
-      font-size: calc(12px + 0.5vmin);
       display: flex;
+      flex-direction: row;
 
-      height: 300px;
+      flex-wrap: wrap;
+
+      height: auto;
 
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: center;
 
       margin: 0px;
       padding: 15px 15px;
+    }
+
+    .app-footer p{
+
+      margin: 20px 30px;
     }
 
     .footer-light {
@@ -180,16 +204,12 @@ class Comp2110Portal extends LitElement {
       box-shadow: 0px 5px 5px;
     }
 
-    .app-footer a {
-      margin-left: 5px;
-    }
-
   `;
 
   constructor() {
     super();
     this.header = "COMP2110 Portal";
-    this.isDarkMode = false;
+    this.isDarkMode = true;
   }
 
   _toggleTheme() {
@@ -245,10 +265,11 @@ class Comp2110Portal extends LitElement {
         </div>
       </main>
 
-      <p class="app-footer ${this.isDarkMode ? "footer-dark" : "footer-light"}">
-        <ad-widget></ad-widget>
-        A product of the COMP2110 Web Development Collective &copy; 2023
-      </p>
+      <div class="app-footer ${this.isDarkMode ? "footer-dark" : "footer-light"}">
+        <ad-widget> </ad-widget>
+        <p>A product of the COMP2110 Web Development Collective &copy; 2023</p>
+        <ad-widget> </ad-widget>
+      </div>
     `;
   }
 }

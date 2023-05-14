@@ -7,7 +7,9 @@ import {
 class RandomFactWidget extends LitElement {
 
 
-  static properties = {};
+  static properties = {
+    data:{}
+  };
 
   //styling goes here
   //this is just placeholder, but in general the rest of the widgets have similar height/width, and borders
@@ -48,9 +50,15 @@ class RandomFactWidget extends LitElement {
         // Display fact in the widget 
         factDiv.innerHTML = data;
       })
-      .catch(error => console.error(error));
+
   }
 
+  _facts() {
+    return html`
+      <h1>Fun Fact About Today</h1>
+      <h2>${this.data}</h2>
+    `
+  }
 
 
 
@@ -59,7 +67,7 @@ class RandomFactWidget extends LitElement {
   //main code goes here
   render() {
     return html`
-    <p>${this._fenchFacts()}</p>
+      ${this._facts()}
   `;
   }
 

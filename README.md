@@ -71,13 +71,32 @@ For more infomation about the assignment read the TASK-OUTLINE.md file for the o
 
 > # holiday-widget - Member: Kevin La
 >
+> ## Description and APIs
+>
 > - Updated date display using JavaScript Date object:
 >   - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 > - Country selection from list provided by external API. Default Country: AU Australia
-> - Displays next five public holidays for the selected region and their dates
+> - Displays public holidays in the next 365 days for the selected region.
 >   - API used: https://date.nager.at/
 > - Displays flag of selected region
 >   Flag API: https://flagpedia.net/download/api
+
+> # task-widget - Member: Kevin La
+>
+> ## Description & APIs
+>
+> - The task widget creates user-typed tasks and stores them on the external COMP2110 server. Users can check off tasks and use the "REMOVE" button the remove tasks off the server.
+> - The backend server used here was prebuilt: https://comp2110-portal-server.fly.dev/
+> - The app uses the fetch API for three use cases:
+>   1. Fetching Data
+>   2. Posting Data (Creating a new task)
+>   3. Modifying Data (Setting tasks are "completed")
+> - Limitations
+>   - Unable to delete tasks: user can not remove tasks off the server, only change the status of tasks
+>   - Limited maximum task list
+>   - The widget only fetches a specified #[number] of tasks to prevent overloading, therefore old pending tasks are never fetched
+>   - Unoptimized & Slow. With there being no delete request, the widget is forced to fetch redundant data (completed tasks)
+>   - Basic CSS
 
 ---
 

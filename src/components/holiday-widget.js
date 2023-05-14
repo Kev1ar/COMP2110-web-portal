@@ -23,11 +23,11 @@ class HolidayWidget extends LitElement {
   static styles = css`
   
     :host {
-        --gray: #BFBDC1;
-        --dimgray: #6D6A75;
-        --raisin: #37323E;
-        --gold: #DEB841;
-        --yellow: #DE9E36;
+        --green: #86C232;
+        --darkgreen: #61892F;
+        --grey: #6B6E70;
+        --darkgrey: #222629;
+
 
         display: block;
         width: 300px;
@@ -38,7 +38,7 @@ class HolidayWidget extends LitElement {
         border: solid 1px black;
         border-radius: 10px;
         
-        background-color: var(--raisin);
+        background-color: var(--darkgrey);
         color: #fff;
         font-size: 16px;
         text-align: left;
@@ -60,21 +60,21 @@ class HolidayWidget extends LitElement {
     }
     #date-container h1 {
       margin: 0px;
+      color: var(--green);
       font-size: 1.8em;
     }
     #date-container p {
-      margin-left: 10px;
-      color: var(--gold);
+      color: var(--darkgreen);
       font-weight: bold;
       font-size: 0.9em;
     }
     img {
       height: 50px;
-      border: 2px solid black;
     }
     
     #country-container {
       align-self: center;
+      margin-top: 10px;
     }
     #country-container label {
       color: #fff;
@@ -82,14 +82,12 @@ class HolidayWidget extends LitElement {
       text
     }
     #country-container select {
-      font-weight: bold;
       font-size: 1em;
       padding: 8px 6px;
       width: 100%;
-      color: black;
+      color: #fff;
 
-      background-color: var(--gray);
-      border: solid 1px black;
+      background-color: var(--darkgrey);
       border-radius: 10px;
       &:hover {
         opacity: 0.9;
@@ -97,20 +95,20 @@ class HolidayWidget extends LitElement {
     } 
     #country-container option {
       font-size:
-      background-color: var(--gray);
-      color: #000;
+      color: #fff;
     }
 
 
     #upcoming-container {
-      background-color: var(--gray);
-      border: 1px solid black;
-      color: #000;
+      color: #fff;
       border-radius: 10px;
       margin-top: 10px;
-      padding: 4px;
+      padding: 5px 10px;
+      border: solid 1px grey;
     }
     #upcoming-container h3{
+
+      color: var(--green);
       margin-top: 3px;
       padding-bottom: 5px;
     }
@@ -127,7 +125,7 @@ class HolidayWidget extends LitElement {
     }
     .date {
       width:60px;
-      font-weight:bold;
+      color: var(--green)
     }
     .day {
       width: 210px;
@@ -140,12 +138,14 @@ class HolidayWidget extends LitElement {
 
     /* Track */
     ::-webkit-scrollbar-track {
-      background: #f1f1f1;
+      background: #fff;
+      border-radius: 5px;
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
-      background: var(--yellow);
+      background: var(--green);
+      border-radius: 5px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
@@ -204,8 +204,7 @@ class HolidayWidget extends LitElement {
   _countryTemplate(){
     return html`
     <div id="country-container">
-      <form action="/action_page.php">
-        <label for="countries">Select your country below: </label>
+      <form title="Select Country" action="/action_page.php">
         <select id="countries" name="countries" @change=${this._updateHolidays}>
           <option value="" selected disabled hidden>Australia</option>
         ${Object.keys(this._countryList).map((country) => 
@@ -226,7 +225,7 @@ class HolidayWidget extends LitElement {
     this._fetchHolidays();
     this._fetchToday();
   }
-
+  
   _upcomingHolidaysTemplate() {
     return html`
                 <div id="upcoming-container">

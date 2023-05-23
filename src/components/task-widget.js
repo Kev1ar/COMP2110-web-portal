@@ -54,6 +54,7 @@ class TaskWidget extends LitElement {
     
     h1 {
       font-size: 2em;
+      color: var(--green);
     }
     
     #update-button {
@@ -225,7 +226,6 @@ class TaskWidget extends LitElement {
     })
     .then((response) => response.json())
     .then((data) => {
-        console.log(data.tasks);
         this._getPendingTasks(data.tasks);
         this._update = !this._update;
     });
@@ -374,14 +374,14 @@ _setAllTaskStatus () {
         this._pendingTasks.push(taskObject);
       }
     }
-    console.log(this._pendingTasks); // prints out list of pending tasks
+    // console.log(this._pendingTasks); // prints out list of pending tasks
     this._update = !this._update;
   }
 
 
   render() {
     if(!getUser())
-      return html`<h3 class="loading-message">Please Login to Access To-Do-List...</h3>`;
+      return html`<h3 class="loading-message">Please Login & Refresh.</h3>`;
     if(!this._pendingTasks)
       return html`<h3 class="loading-message">Fetching Tasks, Please Wait...</h3>`;
     return html`

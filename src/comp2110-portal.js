@@ -60,26 +60,26 @@ class Comp2110Portal extends LitElement {
 
     .header-light {
       background-color: #323c49;
-      box-shadow: 0px 1px 10px black;
+      box-shadow: 0px 1px 3px black;
     }
 
     .header-dark {
       background-color: rgb(30, 30, 30); /*dark grey*/
-      box-shadow: 0px 1px 10px grey;
+      box-shadow: 0px 1px 3px black;
     }
 
     .header-dark h1 {
       color: var(--green);
-      font-size: 30px;
     }
 
     header h1 {
+      font-size: 30px;
       margin: 0px;
       padding: 0px;
     }
 
     .login {
-      
+    
       margin: 0 5% 0 0;;
       padding: 20px 0 0 0;
     }

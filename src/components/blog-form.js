@@ -23,7 +23,7 @@ class BlogForm extends LitElement {
       position: fixed;
       bottom: 15px;
       right: 15px;
-      
+
       width: 100px;
       height: 120px;
     }
@@ -94,7 +94,7 @@ class BlogForm extends LitElement {
     }
 
     .header-dark {
-      background-color: rgb(0, 80, 60); /* Green / test-colour */
+      background-color: #86c232; /* Green / test-colour */
     }
 
     h1 {

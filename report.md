@@ -52,17 +52,21 @@ Documentation for its services can be found here https://github.com/COMP2110-202
 
 ### Blogs
 
-The main feature of the portal are the blogs. Blogs created by other viewers can be viewed by any visitor, but the creation of a blog requires the user to login to the portal and be authenticated. The login form can be located at the top of the page in the header. A blog consists of a Title and Content. Upon submission, a timestamp of the blog’s creation and the author (user) is added and displayed on the portal for visitors/other users to see. Blogs can be created by clicking on the floating button located towards the bottom right corner of the page.
+ The main feature of the portal are the blogs. Blogs created by other viewers can be viewed by any visitor, but the creation of a blog requires the user to login to the portal and be authenticated. The login form can be located at the top of the page in the header. A blog consists of a Title and Content. Upon submission, a timestamp of the blog’s creation and the author (user) is added and displayed on the portal for visitors/other users to see. Blogs can be created by clicking on the floating button located towards the bottom right corner of the page.
 
 Blog’s data persistence and life cycle is handled by the backend server mentioned above.
 
-### Widgets
+---
+
+## Widgets
 
 #### Weather
 
 The weather widget utilizes a third party forecast API to show the user the current weather forecast, as well as future weather forecast. It requires only location permissions, as it utilizes the JavaScript Geolocation API (documentation here https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) to access the user’s current location, after which the forecast API is then called. Further information and documentation on the forecast API can be found here https://open-meteo.com/en/docs
 
 #### Currency Exchange
+
+The Currency Exchange widget uses 170+ currencies from its own third party API to give users live & current exchange rates between different currencies. These exchnage rates actively update everytime the page is reloaded or a new currency is called by switching between the differet currency options from within one of the two drop down boxes within the widget. The code that is primarily used to create the conversion & update method for the currencies can be found here: https://exchangerate.host/#/
 
 #### Upcoming Holidays
 
@@ -81,6 +85,15 @@ The weather widget utilizes a third party forecast API to show the user the curr
 ---
 
 ## Individual Reflection
+
+---
+### 47416084 Gian-Luca Battaglia LucaKBattaglia - Currency Converter Widget
+This being my first group assignment within the university l can say I was very much eager to try & finish the assignment as early as possible, especially because of the assignment being based in 3 new & totally different coding languages (HTML, JavaScript & CSS). My initial reason for choosing to work on the currency conversion widget is because the idea itself is self-explanatory however the JavaScript would be complex allowing me to understand & become more proficient in the coding language as l progress through the widget, with minimal assistance. The coding itself for the widget was fairly straight forward as much of it related to the weeks work in terms of calling different API’s l found Week 7 to be incredibly helpful for the update feature where the widget would request live & current exchange rates from the third party API: https://exchangerate.host/#/. When working on the CSS for the widget l designed my widget to match the design of the web-portal page, this page would further change later drastically & if l had to pick something to approve upon l would change the CSS to a version that does not rely on the web-portal design / background due because due to late changes my CSS for the widget ends up looking out of place. 
+
+One of the issues we faced was reaching a group agreement on the assignments page layout, leading to a major CSS changes later throughout the assignment. The layout transitioned from the default state to a basic design layout, then to the first redesign created by me. Subsequently, to another version that other group members preferred, mainly a colour redesign, Eventually, having us settle on a fourth version together, toggling between the second & third version.
+
+Overall l found working in a group interesting, however very difficult in comparison to working with myself due to the lack of communication especially because of GitHub causing issues if two or more members were to work in same location during the same commit time span, practically locking out other users from certain parts whilst others were working on it to avoid commit errors. Communication was also an issue amongst some members of the group as some would not reach out online in contrast to others who would leave a detailed summary of when they were committing & when they would start working on new commits.
+
 
 ---
 

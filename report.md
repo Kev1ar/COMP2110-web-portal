@@ -40,6 +40,36 @@ In order to publish updates the following command can be used
 
 ## Portal Implementation
 
+The COMP2110 Portal is a web based tool which allows end-users to create blogs and view blogs created by other users. The page also features a handful of widgets utilizing third party APIs, whose functionalities vary from displaying information or acting as a tool for the user. Certain features on the page may require a valid user to be logged in, in order for the feature to be used.
+
+### Main Portal Backend
+
+The main functionalities of the portal utilizes a backend server that is running on https://comp2110-portal-server.fly.dev/.
+
+This backend services handles user authentication, blog creation and retrieval, tasks management, as well as an advertisement widget.
+
+Documentation for its services can be found here https://github.com/COMP2110-2023/comp2110-portal-server/
+
+### Blogs
+
+The main feature of the portal are the blogs. Blogs created by other viewers can be viewed by any visitor, but the creation of a blog requires the user to login to the portal and be authenticated. The login form can be located at the top of the page in the header. A blog consists of a Title and Content. Upon submission, a timestamp of the blog’s creation and the author (user) is added and displayed on the portal for visitors/other users to see. Blogs can be created by clicking on the floating button located towards the bottom right corner of the page.
+
+Blog’s data persistence and life cycle is handled by the backend server mentioned above.
+
+### Widgets
+
+#### Weather
+
+The weather widget utilizes a third party forecast API to show the user the current weather forecast, as well as future weather forecast. It requires only location permissions, as it utilizes the JavaScript Geolocation API (documentation here https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) to access the user’s current location, after which the forecast API is then called. Further information and documentation on the forecast API can be found here https://open-meteo.com/en/docs
+
+#### Currency Exchange
+
+#### Upcoming Holidays
+
+#### Random Facts
+
+#### Tasks
+
 ---
 
 ## Challenges
@@ -58,11 +88,9 @@ In order to publish updates the following command can be used
 
 As someone with little to no experience of working in a group, let alone one that involves mostly front-end development, I found the project to be an interesting and new experience. I mainly chose the weather widget as although its implementation was fairly simple technically, my lack of experience with front-end design and development makes its overall implementation a challenge. Getting information and calling APIs is fairly straightforward, but coming up with a design and then implementing it is a whole different story. Looking at other weather widget designs for inspiration, combined with a lot of trial and error with CSS, eventually led to the widget that we can see on the portal. If I were to pick something that did prove to be a challenge in regards to the widget, it would've mainly been the lack of understanding of CSS, which more than anything just required time to resolve.
 
-I also ended up working on a few other parts of the project, the page layout and blog form specifically. At this point of the project, the widgets were mostly in functional, and such our main focus switched to the portal itself. We had discussions about what the layout should be, after which I was tasked with implementing it. Throughout the process I was constantly asking for feedback, which was met with quick responses. This again led to a fairly smooth process. The blog form's implmentation also underwent a similar process of group design, I implement, and then group feedback. No real challenges arised.
+I also ended up working on a few other parts of the project, the page layout and blog form specifically. At this point of the project, the widgets were mostly in functional, and such our main focus switched to the portal itself. The design process mainly involved a single group session exploring a few ideas and quick prototyping, at the end of which I was tasked with its implementation. Feedback afterwards was minimal so I assumed that the design was sufficient. The blog form's implmentation also underwent a similar process of group design, I implement, and then group feedback. No real challenges arised.
 
-In terms of the overall group project, for me the main concern originally would've been communication. Initially there was little communication about the project, but once it got time to actually working, everyone was active and prompt with responses when asked any questions. Selecting the parts that we would be working as well was pretty straightforward, with no really demanding anything. Everyone worked on their assigned parts and the entire process was smooth. Any decisions that would impact the whole project - such as the main style and layout of the portal - was made as a group decision, and any disagreements were resolved with ease.
-
-Overall my main worries when it comes to group projects proved not to be of any real concerns. The main challenges if any were mostly technical, which were easy enough to resolve.
+Personally I found that the group interacted less than expected, and more so felt like 4 individuals doing their own thing and then trying to mix it all together at the end. There was minimal discussions when it came to the actual overall solution, which in turn led to what I feel a barely cohesive page structure and design. Overall the vague and minimal communication made the project a lot more difficult as expected, almost to the point where I felt like it would've been easier for me to just work on the entire project individually.
 
 ---
 

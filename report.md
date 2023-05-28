@@ -77,6 +77,7 @@ The Currency Exchange widget uses 170+ currencies from its own third party API t
 
 ---
 ## Challenges
+The biggest hurdle the group faced was our projects effective communication and time management. Since not all group members were available at the university simultaneously, we relied on online communication as the obvious choice. However, this approach resulted in a lack of specificity and detailed responses, leading to a breakdown in communication regarding solutions for the overall assignment.
 
 ---
 

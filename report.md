@@ -81,7 +81,7 @@ The Currency Exchange widget uses 170+ currencies from its own third party API t
 ---
 
 ## Outcome and Reward
-The end result of working on all tasks incrementally, for the project, was an early completion of the functionality of the web page. This outcome provided the team with additional time to focus on the project's styling in the later half of the assignment.
+The end result of working on all tasks incrementally for the project, was an early completion of the functionality of the web page. This outcome provided the team with additional time to focus on the project's styling in the later half of the assignment.
 
 - Acquiring practice and expereince while working on individual components of the assignment.
 - The ability to divide the workload effectively among team members.

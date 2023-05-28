@@ -82,7 +82,7 @@ Flag API, flagpedia.net - https://flagpedia.net/download/api
 
 The Random Fact widget reads the date of the day via JavaScript and displays what happened on the same day in history. When user refrash the page, it will show a nre fact about that day. The random fact about the current date is from <http://numbersapi.com/>. For example: http://numbersapi.com/5/28/date. In this url, it contain many facts in May 28th.
 
-### Tasks
+### Tasks To-Do List
 
 This widget is an online to-do list for comp2110 students to post and check off work tasks. It employs the comp2110-portal-server to store and fetch persisting task data. A maximum of four tasks are displayed at one time, with a checkbox-button pairing for task deletion and a user form for task creation. The functionality is achieved through three separate fetch methods, these are:
 
@@ -147,6 +147,18 @@ This assignment was my first time developing a web front-end as part of a group.
 The problem I faced was that I could not confirm the format of the information obtained at the web site. At first, I populated the code and it did not return any value. I tried modifying the fench and it turned out that the URL I was trying to get the information from was wrong. The month and date are displayed as garbled. After trying to change the URL, I found that the type of information I needed to try to get was json, but the type I wanted to output was string. finally, I tried response.text() to convert the information to string.
 
 Although we did work together on this assignment, it was more like a factory assembly line than the group work I used to understand. Each person goes and finishes their part and then uploads it. For this assignment, I think this type of collaboration is fine. There is sometimes a problem where I am pulling and making something and someone else has already uploaded it. I get a version conflict when I am uploading. This is when communication between group members is important. We solved this problem by communicating during the production process.
+
+---
+
+### 45229082 Kevin La - HolidayWidget
+
+Despite the challenges and inconveniences of this group assignment, I personally found it quite enjoyable. The project simulates developing a GitHub project with a small team of developers and allows me to see the application of code that we learned throughout the unit. Both of these aspects provided me with insightful experience to what I need to work on as a software developer. In reflection of the experience, I would divide the challenges faced into the individual and group scopes.
+
+Working on the widgets as an individual became a constant learning process, especially when trying to apply the fetch code with the external API’s. Initially, I struggled with understanding the fetch and API interaction, however glancing at Steph’s weather code, paired with some trial and error, got me accustomed to the usage. After completing the holiday-widget and moving towards the task-widget, I definitely started to gain speed in my coding. I remember Gian or Steph saying that we should complete the functional aspects first before doing the CSS for the website. Following this advice with my widget really sped up the work, by coding the functional design then the visual design, I didn’t have to delete code as I added new features.
+
+Group work was definitely a struggle (I take a lot of responsibility) but helped me learn the most. For GitHub, I often had the habit of committing in large snippets. I realized this was inconvenient for my group members as they didn’t realize what areas of the website I was working on. By committing more frequently and pulling from the main repository more often, I could save time when trying to merge my work (avoid collisions). In terms of time management, I did most of my work at the start and end of the assignment. I think having a more consistent work schedule, especially in the middle of the assignment, would have levitated a lot of the CSS pressure towards the end.
+
+Communication was probably the largest challenge with the assignment. Due to me not coming to class for select weeks and poor work balance with other units, I didn’t meet the members until the ending days of the assignment. By working more on the assignment during the middle of the timeline, we could have had more group meetings and talks. This would have amounted to a more cohesively visual end-product. Overall, I personally enjoyed my group members but did think Zion could have contributed earlier into the timeline.
 
 ---
 

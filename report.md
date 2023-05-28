@@ -71,6 +71,7 @@ The Currency Exchange widget uses 170+ currencies from its own third party API t
 #### Upcoming Holidays
 
 ### Random Facts
+The Random Fact widget reads the date of the day via JavaScript and displays what happened on the same day in history. When user refrash the page, it will show a nre fact about that day. The random fact about the current date is from <http://numbersapi.com/>. For example: http://numbersapi.com/5/28/date. In this url, it contain many facts in May 28th.
 
 ### Tasks
 
@@ -113,7 +114,14 @@ I also ended up working on a few other parts of the project, the page layout and
 Personally I found that the group interacted less than expected, and more so felt like 4 individuals doing their own thing and then trying to mix it all together at the end. There was minimal discussions when it came to the actual overall solution, which in turn led to what I feel a barely cohesive page structure and design. Overall the vague and minimal communication made the project a lot more difficult as expected, almost to the point where I felt like it would've been easier for me to just work on the entire project individually.
 
 ---
+### 46340661 Zion Xiaoxi Su - Random Fact Widget
+This assignment was my first time developing a web front-end as part of a group. We were assigned tasks after dividing the group. After the rest of the group had chosen their tasks, I was assigned the task of creating a random fact component. After assigning the tasks, we then started to complete our parts. The rest of the group also completed the most basic code for the web page. Because of my lack of programming skills, I had to concentrate on completing my part. The widget fetches random facts in the format http://numbersapi.com///date. The program will first fetch the current day, then fill in the URL with the month and date separately, then receive the random facts sent from the URL, and finally populate the widget with the facts.
 
+The problem I faced was that I could not confirm the format of the information obtained at the web site. At first, I populated the code and it did not return any value. I tried modifying the fench and it turned out that the URL I was trying to get the information from was wrong. The month and date are displayed as garbled. After trying to change the URL, I found that the type of information I needed to try to get was json, but the type I wanted to output was string. finally, I tried response.text() to convert the information to string.
+
+Although we did work together on this assignment, it was more like a factory assembly line than the group work I used to understand. Each person goes and finishes their part and then uploads it. For this assignment, I think this type of collaboration is fine. There is sometimes a problem where I am pulling and making something and someone else has already uploaded it. I get a version conflict when I am uploading. This is when communication between group members is important. We solved this problem by communicating during the production process.
+
+---
 ## Notes (We'll remove this before submission):
 
 ## Part 3 of our project, basically two parts to it

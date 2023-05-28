@@ -60,27 +60,33 @@ Blog’s data persistence and life cycle is handled by the backend server mentio
 
 ## Widgets
 
-#### Weather
+### Weather
 
 The weather widget utilizes a third party forecast API to show the user the current weather forecast, as well as future weather forecast. It requires only location permissions, as it utilizes the JavaScript Geolocation API (documentation here https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) to access the user’s current location, after which the forecast API is then called. Further information and documentation on the forecast API can be found here https://open-meteo.com/en/docs
 
-#### Currency Exchange
+### Currency Exchange
 
 The Currency Exchange widget uses 170+ currencies from its own third party API to give users live & current exchange rates between different currencies. These exchnage rates actively update everytime the page is reloaded or a new currency is called by switching between the differet currency options from within one of the two drop down boxes within the widget. The code that is primarily used to create the conversion & update method for the currencies can be found here: https://exchangerate.host/#/
 
 #### Upcoming Holidays
 
-#### Random Facts
+### Random Facts
 
-#### Tasks
+### Tasks
+
 
 ---
-
 ## Challenges
 
 ---
 
 ## Outcome and Reward
+The end result of working on all tasks incrementally, for the project, was an early completion of the functionality of the web page. This outcome provided the team with additional time to focus on the project's styling in the later half of the assignment.
+
+- Acquiring practice and expereince while working on individual components of the assignment.
+- The ability to divide the workload effectively among team members.
+- Observing how theoretical knowledge and classroom teachings translated into practical application within the project.
+ 
 
 ---
 

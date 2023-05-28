@@ -56,15 +56,13 @@ The main feature of the portal are the blogs. Blogs created by other viewers can
 
 Blog’s data persistence and life cycle is handled by the backend server mentioned above.
 
----
+### Widgets
 
-## Widgets
-
-### Weather
+#### Weather
 
 The weather widget utilizes a third party forecast API to show the user the current weather forecast, as well as future weather forecast. It requires only location permissions, as it utilizes the JavaScript Geolocation API (documentation here https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) to access the user’s current location, after which the forecast API is then called. Further information and documentation on the forecast API can be found here https://open-meteo.com/en/docs
 
-### Currency Exchange
+#### Currency Exchange
 
 The Currency Exchange widget uses 170+ currencies from its own third party API to give users live & current exchange rates between different currencies. These exchnage rates actively update everytime the page is reloaded or a new currency is called by switching between the differet currency options from within one of the two drop down boxes within the widget. The code that is primarily used to create the conversion & update method for the currencies can be found here: https://exchangerate.host/#/
 
@@ -78,11 +76,13 @@ Public Holiday API, nager.date - https://date.nager.at
 
 Flag API, flagpedia.net - https://flagpedia.net/download/api
 
-### Random Facts
+#### Random Facts
 
 The Random Fact widget reads the date of the day via JavaScript and displays what happened on the same day in history. When user refrash the page, it will show a nre fact about that day. The random fact about the current date is from <http://numbersapi.com/>. For example: http://numbersapi.com/5/28/date. In this url, it contain many facts in May 28th.
 
-### Tasks To-Do List
+Note: Due to the fact that the Numbers API uses HTTP instead of HTTPS, as it stands it is currently non-functional.
+
+#### Tasks To-Do List
 
 This widget is an online to-do list for comp2110 students to post and check off work tasks. It employs the comp2110-portal-server to store and fetch persisting task data. A maximum of four tasks are displayed at one time, with a checkbox-button pairing for task deletion and a user form for task creation. The functionality is achieved through three separate fetch methods, these are:
 
@@ -110,15 +110,13 @@ The biggest hurdle the group faced was our projects effective communication and 
 
 The end result of working on all tasks incrementally for the project, was an early completion of the functionality of the web page. This outcome provided the team with additional time to focus on the project's styling in the later half of the assignment.
 
-- Acquiring practice and expereince while working on individual components of the assignment.
+- Acquiring practice and experience while working on individual components of the assignment.
 - The ability to divide the workload effectively among team members.
 - Observing how theoretical knowledge and classroom teachings translated into practical application within the project.
 
 ---
 
 ## Individual Reflection
-
----
 
 ### 47416084 Gian-Luca Battaglia LucaKBattaglia - Currency Converter Widget
 
@@ -161,47 +159,3 @@ Group work was definitely a struggle (I take a lot of responsibility) but helped
 Communication was probably the largest challenge with the assignment. Due to me not coming to class for select weeks and poor work balance with other units, I didn’t meet the members until the ending days of the assignment. By working more on the assignment during the middle of the timeline, we could have had more group meetings and talks. This would have amounted to a more cohesively visual end-product. Overall, I personally enjoyed my group members but did think Zion could have contributed earlier into the timeline.
 
 ---
-
-## Notes (We'll remove this before submission):
-
-## Part 3 of our project, basically two parts to it
-
-- Deploying the WebApp
-- Writing a report
-
-Writing a Report
-
-3000 word limit
-Some sections we do as a group, others are individual that we then combine together.
-We are to add it as report.md in our repository that we've been working on. Afterwards I think we need to submit the .md file on iLearn.
-
-> # The main parts of it are as follows,
->
-> ## Deployment Details (Group)
->
-> ## what?
->
-> Webpage Creation through 'Cloudflare Pages', via nxp commands on Cloudflare wrangler command line tool 'Wrangler'
->
-> ## how?
->
-> 1. Installed npm WRANGLER into "WEB-DEVELOPMENT-project-group-81" & ssantos(Earl) created account with cloudflare online
-> 2. LOGGED in via nxp using cloudflare account & inputing project name for authentiaction
-> 3. After authenication cloudflare uses new name to create URL (https://comp2110-portal-group-81.pages.dev/) & launch webpage
-
-> # What we implemented (Group)
->
-> - explaining the main portal functionalities and widgets
-
-> # What did the group find challenging?(Group/Individual)
->
-> - if you found something challenging just add it here
-
-> # What was rewarding for the group/individual? (Group/Individual)
->
-> - if you found something interesting/rewarding add it here
-
-> # Individual reflection (~~375 words each)
->
-> - which widget did you choose and why?
-> - what was most challenging part of the project for you?
